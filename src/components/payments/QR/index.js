@@ -10,22 +10,26 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
-    marginRight: 'auto'
-  }
+    marginRight: 'auto',
+  },
 });
 
 class QR extends Component {
+  onButtonClick = () => {
+    window.postMessage('START_QR_SCANNING', '*');
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <h2>QR</h2>
-        <Button>
-          <AspectRatioIcon style={{fontSize: 50}} />
+        <Button onClick={this.onButtonClick}>
+          <AspectRatioIcon style={{ fontSize: 50 }} />
           Сканировать
         </Button>
       </div>
