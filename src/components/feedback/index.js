@@ -3,11 +3,36 @@ import {
     MessageList,
     Input,
     Button
-} from '../../chat';
+} from 'react-chat-elements';
+import { withStyles } from '@material-ui/core/styles'
+import 'react-chat-elements/dist/main.css';
 
-const loremIpsum = require('lorem-ipsum');
-const Identicon = require('identicon.js')
 const moment = require('moment');
+
+const styles = theme => ({
+	container : {
+		display: 'flex',
+		flexDirection: 'row',
+		/* min-height: 100%, */
+		overflow: 'auto',
+		position: 'absolute',
+		top: '0',
+		bottom: '60px',
+		left: '0',
+		right: '0',
+	},
+		
+	rightPanel : {
+		flex: 1,
+		display: 'flex',
+		flexDirection: 'column',
+	},
+	
+	messageList : {
+		flex: 1,
+		minWidth: '140px',
+	}
+})
 
 export class App extends Component {
 
@@ -18,85 +43,54 @@ export class App extends Component {
             show: true,
             messageList: [],
         };
-    }
+    }  
 
-    componentWillMount() {
-        // setInterval(this.addMessage.bind(this), 3000);
-    }
-
-    getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-    token() {
-        return (parseInt(Math.random() * 10 % 6));
-    }
-
-    photo(size) {
-        return new Identicon('443212341234123', {
-            margin: 0,
-            size: size || 20,
-        }).toString()
-    }
-
-    makeMessage(message) {
-                const type = 'text'
-                var status = 'read';
-
-                return {
-                    position: ('right'),
-                    forwarded: true,
-                    type: type,
-                    theme: 'white',
-                    view: 'list',
-                    titleColor: '#335442',
-                    text: message,
-                    onLoad: () => {
-                        console.log('Photo loaded');
-                    },
-                    status: status,
-                    date: new Date(),
-                    dateString: moment(new Date()).format('HH:mm'),
-                }
-
+    createMessage(message) {
+        let type = 'text';
+        let status = 'read';
+                
+        return {
+            position: 'right',
+            forwarded: true,
+            type: type,
+            theme: 'white',
+            view: 'list',
+            title: null,
+            text: message,
+            status: status,
+            date: new Date(),
+            dateString: moment(new Date()).format('HH:mm'),
+        };
+            
     }
 
     addMessage = () => {
-      if(this.refs.input.state.value){
-        var list = this.state.messageList;
-        list.push(this.makeMessage(this.refs.input.state.value));
-        this.refs.input.clear();
+        let message = this.refs.input.state.value
+        if (message) {
+            var list = this.state.messageList;
+        list.push(this.createMessage(message))
+        this.refs.input.state.value = ''
         this.setState({
             messageList: list,
         });
-      }
+        } 
     }
 
     render() {
-        var arr = [];
-        for (var i = 0; i < 5; i++)
-            arr.push(i);
-
+        
+		const { classes } = this.props
         return (
-            <div style={{
-              width: '100%',
-              position: 'absolute',
-              bottom: '60px'
-              }}>
+            <div className={classes.container}>
                 <div
-                    className='right-panel'>
+                    className={classes.rightPanel}>
                     <MessageList
-                        className='message-list'
+                        className={classes.messageList}
                         lockable={true}
                         downButtonBadge={10}
                         dataSource={this.state.messageList} />
-                  <Input
-                        placeholder=""
+
+                    <Input
+                        placeholder="Введите сообщение"
                         defaultValue=""
                         ref='input'
                         multiline={true}
@@ -117,11 +111,10 @@ export class App extends Component {
                                 text='Отправить'
                                 onClick={this.addMessage} />
                         } />
-                    
                 </div>
             </div>
         );
     }
 }
 
-export default App;
+export default withStyles(styles)(App);

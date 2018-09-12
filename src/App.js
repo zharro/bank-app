@@ -41,64 +41,80 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   />
 );
 
-  const routes = [
-    {
-    path: "/layout",
-    component: Layout,
-    routes: [{
-      path: "/home",
-      component: HomePage
-    },
-    {
-      path: "/payments",
-      component: Payments,
-      routes: [
-        {
-          path: "/payments/templates",
-          component: Templates
-        },
-        {
-          path: "/payments/autopayment",
-          component: Autopayment
-        },
-        {
-          path: "/payments/QR",
-          component: QR
-        },
-        {
-          path: "/payments/Gosuslugi",
-          component: Gosuslugi
-        }
-      ]
-    },
-    {
-      path: "/money",
-      component: Money,
-      routes: [
-        {
-          path: "/money/partner",
-          component: Partner
-        },
-        {
-          path: "/money/bank",
-          component: Bank
-        }
-      ]
-    },
-    {
-      path: "/transfer",
-      component: Transfer
-    },
-    {
-      path: "/history",
-      component: HistoryPage
-    },
-    {
-      path: "/feedback",
-      component: Feedback
-    },
-  ]}
-  ]
+//   const routes = [
+//     {
+//       path: "/login",
+//       component: Login,
+//     },
+//     {
+//       path: "/register",
+//       component: RegistrationPage,
+//     },
+//     {
+//       path: "/",
+//       component: Layout,
+//       routes: [
+//         {
+//           path: "/home",
+//           component: HomePage
+//         },
+//         {
+//           path: "/payments",
+//           component: Payments
+//         },
+//         {
+//           path: "/payments/templates",
+//           component: Templates
+//         },
+//         {
+//           path: "/payments/autopayment",
+//           component: Autopayment
+//         },
+//         {
+//           path: "/payments/QR",
+//           component: QR
+//         },
+//         {
+//           path: "/payments/Gosuslugi",
+//           component: Gosuslugi
+//         },
+//         {
+//           path: "/money",
+//           component: Money
+//         },
+//         {
+//           path: "/money/partner",
+//           component: Partner
+//         },
+//         {
+//           path: "/money/bank",
+//           component: Bank
+//         },
+//         {
+//           path: "/transfer",
+//           component: Transfer
+//         },
+//         {
+//           path: "/history",
+//           component: HistoryPage
+//         },
+//         {
+//           path: "/feedback",
+//           component: Feedback
+//         }
+//       ]
+//     }
+//   ]
+
+//  export const RouteWithSubRoutes = route => (
+//     <Route
+//       path={route.path}
+//       render={props => (
+//         // pass the sub-routes down to keep nesting
+//         <route.component {...props} routes={route.routes} />
+//       )}
+//     />
+//   );
 
 class App extends Component {
   render() {
@@ -110,23 +126,13 @@ class App extends Component {
             <AppRoute layout={Layout} path="/home" component={HomePage} />
             <AppRoute layout={Layout} path="/payments" component={Payments} />
             <AppRoute layout={Layout} path="/templates" component={Templates} />
-            <AppRoute
-              layout={Layout}
-              path="/autopayment"
-              component={Autopayment}
-            />
+            <AppRoute layout={Layout} path="/autopayment" component={Autopayment} />
             <AppRoute exact layout={Layout} path="/QR" component={QR} />
-            <AppRoute
-              layout={Layout}
-              path="/QR/success"
-              component={QRSuccess}
-            />
-
+            <AppRoute layout={Layout} path="/QR/success" component={QRSuccess} />
             <AppRoute layout={Layout} path="/money" component={Money} />
             <AppRoute layout={Layout} path="/partner" component={Partner} />
             <AppRoute layout={Layout} path="/bank" component={Bank} />
             <AppRoute layout={Layout} path="/gosuslugi" component={Gosuslugi} />
-
             <AppRoute layout={Layout} path="/feedback" component={Feedback} />
             <AppRoute layout={Layout} path="/history" component={HistoryPage} />
             <AppRoute layout={Layout} path="/transfer" component={Transfer} />

@@ -61,7 +61,7 @@ class Gosuslugi extends React.Component {
   onPayStatusClose = () => {
     this.setState({
       checkedA: false,
-      checkedA: false,
+      checkedB: false,
       payOption: '',
       card: ''
     })
@@ -142,7 +142,7 @@ class Gosuslugi extends React.Component {
             Сканировать QR
           </Button>
       )
-      default: null
+      default: 
     }
   }
   render() {

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-import dzubaAvatar from '../../assets/images/dzuba.jpg';
+// import dzubaAvatar from '../../assets/images/dzuba.jpg';
 
 const styles = theme => ({
   root: {
@@ -24,7 +24,6 @@ const styles = theme => ({
 
 function HomeTopNavigation(props) {
   const { classes } = props;
-  console.log(dzubaAvatar);
   return (
     <div className={classes.root}>
       <Avatar

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import BottomNavigation from './BottomNavigation'
-
-const drawerWidth = 240;
+// import RouteWithSubRoutes from '../../App'
 
 const styles = theme => ({
   root: {
@@ -19,36 +18,28 @@ const styles = theme => ({
   }
 });
 
-class Dashboard extends React.Component {
-
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+class Layout extends React.Component {
 
   render() {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
+      <React.Fragment>        
         <CssBaseline />
         <div className={classes.root}>
-          <main className={classes.content}>
-            {this.props.children}
-            <BottomNavigation />
+            <main className={classes.content}>
+              {this.props.children}
+              {/* {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)} */}
+              <BottomNavigation />
           </main>
         </div>
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }
 
-Dashboard.propTypes = {
+Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles)(Layout);
