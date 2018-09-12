@@ -13,7 +13,6 @@ const styles = theme => ({
 	container : {
 		display: 'flex',
 		flexDirection: 'row',
-		/* min-height: 100%, */
 		overflow: 'auto',
 		position: 'absolute',
 		top: '0',
