@@ -7,36 +7,33 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
-
+import Form from '../../common/Form'
+import SubmitButton from '../../common/SubmitButton'
+ 
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'center'
-    // flexWrap: 'wrap',
+    flexDirection: 'column'
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 240,
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 240,
+    marginRight: theme.spacing.unit
   },
   menu: {
-    width: 240,
   },
 });
 
 class SimpleSelect extends React.Component {
   state = {
-    age: '',
-    name: 'hai',
-    sum: 0
+    partner: '',
+    sum: '',
+    showPayStatus: 'false'
   };
 
 
@@ -51,24 +48,34 @@ class SimpleSelect extends React.Component {
     });
   };
 
+  onPay = () => {
+    this.setState({showPayStatus: true})
+  }
+  onPayStatusClose = () => {
+    this.setState({
+      partner: '',
+      sum: ''
+    })
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
-      <form className={classes.root} autoComplete="off">
+      <Form headerText='Получить наличные'>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="partnerId">Выберите банк</InputLabel>
+          <InputLabel htmlFor="partnerId">Выберите партнера</InputLabel>
           <Select
-            value={this.state.age}
+            value={this.state.partner}
             onChange={this.handleChange}
             inputProps={{
-              name: 'age',
-              id: 'age-simple',
+              name: 'partner',
+              id: 'partner',
             }}
           >
-            <MenuItem value={10}>ВТБ</MenuItem>
-            <MenuItem value={20}>Сбербанк</MenuItem>
-            <MenuItem value={30}>Альфабанк</MenuItem>
+            <MenuItem value={'euroset'}>ВТБ</MenuItem>
+            <MenuItem value={'wu'}>АльфаБанк</MenuItem>
+            <MenuItem value={'sv'}>Сбербанк</MenuItem>
           </Select>
           <TextField
             id="number"
@@ -82,11 +89,11 @@ class SimpleSelect extends React.Component {
           }}
           margin="normal"
         />
-        <Button variant="contained" color="primary" className={classes.button}>
-        Подтвердить
-      </Button>
+        <SubmitButton alertText={'Заявка отправлена'} 
+          buttonText={'Получить'} 
+          onClose={this.onPayStatusClose} />
         </FormControl>
-      </form>
+      </Form>
     );
   }
 }

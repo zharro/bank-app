@@ -13,7 +13,6 @@ const styles = theme => ({
   content: {
     flexDirection: 'column',
     flexGrow: 1,
-    // padding: theme.spacing.unit * 3,
     paddingTop: '30px',
     height: '100vh',
     overflow: 'auto',

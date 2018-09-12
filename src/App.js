@@ -7,7 +7,7 @@ import { routerReducer } from 'react-router-redux';
 import * as reducers from './reducers';
 
 import './App.css';
-import RegistrationPage from './components/register/RegistrationPage';
+import Registration from './components/register';
 import HomePage from './components/home/HomePage';
 import Payments from './components/payments';
 import Money from './components/money';
@@ -20,6 +20,7 @@ import Autopayment from './components/payments/Autopayment';
 import QR from './components/payments/QR';
 import Partner from './components/money/partner';
 import Bank from './components/money/bank';
+import Gosuslugi from './components/payments/Gosuslugi';
 import QRSuccess from './components/payments/QRSuccess';
 
 const reducer = combineReducers({
@@ -40,13 +41,72 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   />
 );
 
+  const routes = [
+    {
+    path: "/layout",
+    component: Layout,
+    routes: [{
+      path: "/home",
+      component: HomePage
+    },
+    {
+      path: "/payments",
+      component: Payments,
+      routes: [
+        {
+          path: "/payments/templates",
+          component: Templates
+        },
+        {
+          path: "/payments/autopayment",
+          component: Autopayment
+        },
+        {
+          path: "/payments/QR",
+          component: QR
+        },
+        {
+          path: "/payments/Gosuslugi",
+          component: Gosuslugi
+        }
+      ]
+    },
+    {
+      path: "/money",
+      component: Money,
+      routes: [
+        {
+          path: "/money/partner",
+          component: Partner
+        },
+        {
+          path: "/money/bank",
+          component: Bank
+        }
+      ]
+    },
+    {
+      path: "/transfer",
+      component: Transfer
+    },
+    {
+      path: "/history",
+      component: HistoryPage
+    },
+    {
+      path: "/feedback",
+      component: Feedback
+    },
+  ]}
+  ]
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div>
-            <Route exact path="/" component={RegistrationPage} />
+            <Route exact path="/" component={Registration} />
             <AppRoute layout={Layout} path="/home" component={HomePage} />
             <AppRoute layout={Layout} path="/payments" component={Payments} />
             <AppRoute layout={Layout} path="/templates" component={Templates} />
@@ -65,6 +125,7 @@ class App extends Component {
             <AppRoute layout={Layout} path="/money" component={Money} />
             <AppRoute layout={Layout} path="/partner" component={Partner} />
             <AppRoute layout={Layout} path="/bank" component={Bank} />
+            <AppRoute layout={Layout} path="/gosuslugi" component={Gosuslugi} />
 
             <AppRoute layout={Layout} path="/feedback" component={Feedback} />
             <AppRoute layout={Layout} path="/history" component={HistoryPage} />

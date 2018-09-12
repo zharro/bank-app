@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import Button from '@material-ui/core/Button';
 import { listItems } from './List'
+import Header from '../../common/Header'
 
 const styles = theme => ({
   root: {
@@ -23,7 +24,7 @@ class Templates extends Component {
 
     return (
       <div className={classes.root}>
-        <h2>ШАБЛОНЫ</h2>
+        <Header>Шаблоны</Header>
         {listItems}
         <Button>
           <PlaylistAddIcon style={{fontSize: 50}} />

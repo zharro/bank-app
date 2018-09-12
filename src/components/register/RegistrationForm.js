@@ -10,12 +10,12 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexGrow: 1,
   },
   header: {
     // marginRight: 'auto'
@@ -65,59 +65,21 @@ class RegistrationForm extends Component {
 
     return (
       <div className={classes.root}>
-        <h4 className={classes.header}>Регистрация</h4>
-        <form className={classes.form} onSubmit={this.handleSubmit}>
-          <TextField
-            name="lastName"
-            label="Фамилия"
-            className={classes.formControl}
-            onChange={this.handleInputChange}
-          />
-          <TextField
-            name="name"
-            label="Имя"
-            className={classes.formControl}
-            onChange={this.handleInputChange}
-          />
-          <TextField
-            name="middleName"
-            label="Отчество"
-            className={classes.formControl}
-            onChange={this.handleInputChange}
-          />
-          <TextField
-            name="phone"
-            label="Телефон"
-            className={classes.formControl}
-            type="tel"
-            onChange={this.handleInputChange}
-          />
-          <TextField
-            name="email"
-            label="Email"
-            className={classes.formControl}
-            type="email"
-            onChange={this.handleInputChange}
-          />
-          <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend">Пол</FormLabel>
-            <RadioGroup
-              aria-label="Gender"
-              name="sex"
-              className={classes.radioGroup}
-              value={this.state.value}
+        <Grid container spacing={24} direction="column">
+          <Grid item xs={12}>
+            <Typography variant="headline" gutterBottom>
+              Headline
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="lastName"
+              label="Фамилия"
+              className={classes.formControl}
               onChange={this.handleInputChange}
-            >
-              <FormControlLabel value="female" control={<Radio />} label="Женский" />
-              <FormControlLabel value="male" control={<Radio />} label="Мужской" />
-            </RadioGroup>
-          </FormControl>
-          <Link to='/home'>
-            <Button type="submit" variant="contained" color="primary" className={classes.formControl}>
-            Зарегистрироваться
-          </Button>
-        </Link>
-        </form>
+            />
+          </Grid>
+        </Grid>
       </div>
     );
   }

@@ -8,7 +8,6 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
   },
   header: {
     marginRight: 'auto'
@@ -22,7 +21,6 @@ class HomePage extends Component {
     return (
       <div className={classes.root}>
         <div>
-          <h4 className={classes.header}>Главная</h4>
           <HomeTopNavigation />
           <UserCardsList />
         </div>

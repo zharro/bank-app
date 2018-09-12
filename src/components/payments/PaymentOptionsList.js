@@ -30,12 +30,15 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset></ListSubheader>
+    <Link to='/gosuslugi'>
+
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Госуслуги" />
     </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />

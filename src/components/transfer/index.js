@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import Button from '@material-ui/core/Button';
 import { listItems } from './List'
+import Header from '../common/Header'
+
 
 const styles = theme => ({
   root: {
@@ -23,6 +23,7 @@ class Autopayment extends Component {
 
     return (
       <div className={classes.root}>
+        <Header>Переводы</Header>
         {listItems}
       </div>
     );

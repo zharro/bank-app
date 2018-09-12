@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import { mainListItems, secondaryListItems} from './PaymentOptionsList'
+import Header from '../common/Header'
 
 const styles = theme => ({
   root: {
@@ -21,6 +22,7 @@ class Payments extends Component {
 
     return (
       <div className={classes.root}>
+        <Header>Платежи</Header>
         {mainListItems}
         {secondaryListItems}
       </div>

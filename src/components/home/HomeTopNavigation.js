@@ -6,11 +6,11 @@ import SettingsIcon from '@material-ui/icons/Settings';
 
 import dzubaAvatar from '../../assets/images/dzuba.jpg';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    width: 300,
+    margin: `0 ${theme.spacing.unit}px`,
   },
   avatar: {
     marginRight: 'auto',
@@ -20,7 +20,7 @@ const styles = {
   settings: {
     marginLeft: 'auto'
   }
-};
+});
 
 function HomeTopNavigation(props) {
   const { classes } = props;
