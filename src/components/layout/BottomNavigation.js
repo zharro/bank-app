@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -13,8 +13,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const styles = {
   root: {
-    width: "100%",
-    position:'absolute',
+    width: '100%',
+    position: 'absolute',
     bottom: '0px',
   },
 };
@@ -30,7 +30,6 @@ class HomeBottomNavigation extends Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <BottomNavigation
         value={this.props.history.location.pathname}
@@ -38,12 +37,36 @@ class HomeBottomNavigation extends Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="Главная" icon={<CardIcon /> } value='/home' />
-        <BottomNavigationAction label="Платежи" icon={<LocalParkingIcon />} value='/payments' />
-        <BottomNavigationAction label="Переводы" icon={<LocalParkingIcon />} value='/transfer' />
-        <BottomNavigationAction label="Наличные" icon={<MoneyIcon />} value='/money' />
-        <BottomNavigationAction label="История" icon={<AssignmentIcon />} value='/history' />
-        <BottomNavigationAction label="Чат" icon={<FeedbackIcon />} value='/feedback' />
+        <BottomNavigationAction
+          icon={<CardIcon />}
+          value="/home"
+          style={{ minWidth: 10 }}
+        />
+        <BottomNavigationAction
+          icon={<LocalParkingIcon />}
+          value="/payments"
+          style={{ minWidth: 10 }}
+        />
+        <BottomNavigationAction
+          icon={<LocalParkingIcon />}
+          value="/transfer"
+          style={{ minWidth: 10 }}
+        />
+        <BottomNavigationAction
+          icon={<MoneyIcon />}
+          value="/money"
+          style={{ minWidth: 10 }}
+        />
+        <BottomNavigationAction
+          icon={<AssignmentIcon />}
+          value="/history"
+          style={{ minWidth: 10 }}
+        />
+        <BottomNavigationAction
+          icon={<FeedbackIcon />}
+          value="/feedback"
+          style={{ minWidth: 10 }}
+        />
       </BottomNavigation>
     );
   }

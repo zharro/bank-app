@@ -18,8 +18,8 @@ const styles = theme => ({
     height: 60,
   },
   settings: {
-    marginLeft: 'auto'
-  }
+    marginLeft: 'auto',
+  },
 });
 
 function HomeTopNavigation(props) {
@@ -28,7 +28,7 @@ function HomeTopNavigation(props) {
     <div className={classes.root}>
       <Avatar
         alt="Artem Dzyuba"
-        src="/static/media/dzuba.7e1adf34.jpg"
+        src="./images/dzuba.jpg"
         className={classes.avatar}
       />
       <Avatar className={classes.settings}>
