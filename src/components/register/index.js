@@ -48,7 +48,7 @@ class Registration extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Form headerText="Регистрация">
+      <Form>
         <TextField
           name="lastName"
           label="Фамилия"
@@ -81,7 +81,7 @@ class Registration extends React.Component {
           type="email"
           onChange={this.handleChange}
         />
-        <FormControl component="fieldset" className={classes.formControl}>
+        <FormControl component="fieldset">
           <FormLabel component="legend">Пол</FormLabel>
           <RadioGroup
             aria-label="Gender"

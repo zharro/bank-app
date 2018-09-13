@@ -33,7 +33,9 @@ class Layout extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, history, back } = this.props;
+    const renderLayout = history.location.pathname !== '/';
+
     return (
       <Grid
         container
@@ -43,15 +45,16 @@ class Layout extends React.Component {
         alignItems="stretch"
       >
         <Grid item>
-          <AppBar />
+          <AppBar back={back} renderChat={renderLayout} />
         </Grid>
         <Grid item className={classes.content}>
           {this.props.children}
         </Grid>
-        <Grid item>
-          <BottomNavigation />
-        </Grid>
-        {/* {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)} */}
+        {renderLayout && (
+          <Grid item>
+            <BottomNavigation />
+          </Grid>
+        )}
       </Grid>
     );
   }

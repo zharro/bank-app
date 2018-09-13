@@ -34,7 +34,7 @@ class Form  extends React.Component {
 
 Form.propTypes = {
     classes: PropTypes.object.isRequired,
-    headerText: PropTypes.string.isRequired
+    // headerText: PropTypes.string.isRequired
   };
 
 export default withStyles(styles)(Form);

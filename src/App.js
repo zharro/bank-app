@@ -34,110 +34,38 @@ const reducer = combineReducers({
 
 const store = createStore(reducer);
 
-const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => {
+  return (
   <Route
     {...rest}
     render={props => (
-      <Layout>
+      <Layout {...rest}>
         <Component {...props} />
       </Layout>
     )}
   />
-);
+)};
 
-//   const routes = [
-//     {
-//       path: "/login",
-//       component: Login,
-//     },
-//     {
-//       path: "/register",
-//       component: RegistrationPage,
-//     },
-//     {
-//       path: "/",
-//       component: Layout,
-//       routes: [
-//         {
-//           path: "/home",
-//           component: HomePage
-//         },
-//         {
-//           path: "/payments",
-//           component: Payments
-//         },
-//         {
-//           path: "/payments/templates",
-//           component: Templates
-//         },
-//         {
-//           path: "/payments/autopayment",
-//           component: Autopayment
-//         },
-//         {
-//           path: "/payments/QR",
-//           component: QR
-//         },
-//         {
-//           path: "/payments/Gosuslugi",
-//           component: Gosuslugi
-//         },
-//         {
-//           path: "/money",
-//           component: Money
-//         },
-//         {
-//           path: "/money/partner",
-//           component: Partner
-//         },
-//         {
-//           path: "/money/bank",
-//           component: Bank
-//         },
-//         {
-//           path: "/transfer",
-//           component: Transfer
-//         },
-//         {
-//           path: "/history",
-//           component: HistoryPage
-//         },
-//         {
-//           path: "/feedback",
-//           component: Feedback
-//         }
-//       ]
-//     }
-//   ]
-
-//  export const RouteWithSubRoutes = route => (
-//     <Route
-//       path={route.path}
-//       render={props => (
-//         // pass the sub-routes down to keep nesting
-//         <route.component {...props} routes={route.routes} />
-//       )}
-//     />
-//   );
 
 export const routes = [
+  { path:"/", component: Registration, name: 'Регистрация'},
   { path:"/home", component: HomePage, name: 'Главная'},
   { path:"/payments", component: Payments, name: 'Платежи'},
-  { path:"/templates", component: Templates, name: 'Шаблоны'},
-  { path:"/autopayment", component: Autopayment, name: 'Автоплатежи'},
-  { path:"/QR", component: QR, name: 'QR-код'},
+  { path:"/templates", component: Templates, name: 'Шаблоны', back: true},
+  { path:"/autopayment", component: Autopayment, name: 'Автоплатежи', back: true},
+  { path:"/QR", component: QR, name: 'QR-код', back: true},
   { path:"/QR/success", component: QRSuccess, name: 'QR-код'},
   { path:"/money", component: Money, name: 'Наличные'},
-  { path:"/partner", component: Partner, name: 'Наличные'},
-  { path:"/bank", component: Bank, name: 'Наличные'},
-  { path:"/gosuslugi", component: Gosuslugi, name: 'Платежи'},
+  { path:"/partner", component: Partner, name: 'Наличные', back: true},
+  { path:"/bank", component: Bank, name: 'Наличные', back: true},
+  { path:"/gosuslugi", component: Gosuslugi, name: 'Платежи', back: true},
   { path:"/feedback", component: Feedback, name: 'Обратная связь'},
   { path:"/history", component: HistoryPage, name: 'Выписка'},
   { path:"/transfer", component: Transfer, name: 'Переводы'},
-  { path:"/own", component: Own, name: 'Переводы'},
-  { path:"/client", component: Client, name: 'Переводы'},
-  { path:"/card", component: Card, name: 'Переводы'},
-  { path:"/account", component: Account, name: 'Переводы'}
+  { path:"/own", component: Own, name: 'Переводы', back: true},
+  { path:"/client", component: Client, name: 'Переводы', back: true},
+  { path:"/card", component: Card, name: 'Переводы', back: true},
+  { path:"/account", component: Account, name: 'Переводы', back: true}
 ]
 
 class App extends Component {
@@ -146,8 +74,8 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <Route exact path="/" component={Registration} />
-            { routes.map(r => <AppRoute key={r.path} exact layout={Layout} path={r.path} component={r.component}/>)}
+            {/* <Route exact path="/" component={Registration} /> */}
+            { routes.map(r => <AppRoute key={r.path} exact back={r.back} layout={Layout} path={r.path} component={r.component}/>)}
 
           </div>
         </Router>
