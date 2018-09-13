@@ -10,33 +10,15 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   header: {
     marginRight: 'auto'
-  },
-  stepper: {
-    maxWidth: 400,
-    flexGrow: 1,
-    justifySelf:'flex-end'
   }
 });
 
 class Payments extends Component {
-  state = {
-    activeStep: 0,
-  };
-
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
-  };
-
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
-  };
 
   render() {
     const { classes } = this.props;

@@ -12,6 +12,10 @@ import HomePage from './components/home/HomePage';
 import Payments from './components/payments';
 import Money from './components/money';
 import Feedback from './components/feedback';
+import Own from './components/transfer/own';
+import Client from './components/transfer/client';
+import Card from './components/transfer/card';
+import Account from './components/transfer/account';
 import Transfer from './components/transfer';
 import HistoryPage from './components/history';
 import Layout from './components/layout';
@@ -136,6 +140,10 @@ class App extends Component {
             <AppRoute layout={Layout} path="/feedback" component={Feedback} />
             <AppRoute layout={Layout} path="/history" component={HistoryPage} />
             <AppRoute layout={Layout} path="/transfer" component={Transfer} />
+            <AppRoute layout={Layout} path="/own" component={Own} />
+            <AppRoute layout={Layout} path="/client" component={Client} />
+            <AppRoute layout={Layout} path="/card" component={Card} />
+            <AppRoute layout={Layout} path="/account" component={Account} />
           </div>
         </Router>
       </Provider>

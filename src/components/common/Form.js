@@ -16,17 +16,6 @@ const styles = theme => ({
     formControl: {
       margin: theme.spacing.unit * 2,
     },
-    selectEmpty: {
-      marginTop: theme.spacing.unit * 2,
-    },
-    textField: {
-    },
-    menu: {
-      // width: 240,
-    },
-    button: {
-      // alignSelf: 'center'
-    },
   });
 
 class Form  extends React.Component {

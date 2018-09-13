@@ -8,10 +8,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 
 import Form from '../../common/Form'
 import SubmitButton from '../../common/SubmitButton'
+import CardSelect from '../../common/CardSelect';
 
 
 const styles = theme => ({
@@ -73,21 +73,7 @@ class Gosuslugi extends React.Component {
     switch(param) {
       case 'req': return (
         <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-         <InputLabel htmlFor="card">Выберите карту</InputLabel>
-          <Select
-          className={classes.select}
-              value={this.state.card}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'card',
-                id: 'card',
-              }}
-            >
-              <MenuItem value={'tinkoff'}>**** 1367</MenuItem>
-              <MenuItem value={'sberbank'}>**** 6372</MenuItem>
-            </Select>
-        </FormControl>
+         <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
         
           <TextField
           id="number"

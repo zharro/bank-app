@@ -5,19 +5,20 @@ import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import FeedbackIcon from '@material-ui/icons/Feedback';
-import CardIcon from '@material-ui/icons/CreditCard';
 import MoneyIcon from '@material-ui/icons/Money';
-import LocalParkingIcon from '@material-ui/icons/LocalParking';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import HomeIcon from '@material-ui/icons/Home';
+import PaymentsIcon from '@material-ui/icons/ImportExport';
+import TransfersIcon from '@material-ui/icons/NearMe';
 
-const styles = {
+const styles = theme => ({
   root: {
-    width: '100%',
-    position: 'absolute',
-    bottom: '0px',
-  },
-};
+    // width: '100%',
+    // position:'absolute',
+    // bottom: '0px',
+    // backgroundColor: '#e8f4fd'
+  }
+})
 
 class HomeBottomNavigation extends Component {
   state = {
@@ -30,6 +31,7 @@ class HomeBottomNavigation extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <BottomNavigation
         value={this.props.history.location.pathname}
@@ -38,17 +40,17 @@ class HomeBottomNavigation extends Component {
         className={classes.root}
       >
         <BottomNavigationAction
-          icon={<CardIcon />}
+          icon={<HomeIcon />}
           value="/home"
           style={{ minWidth: 10 }}
         />
         <BottomNavigationAction
-          icon={<LocalParkingIcon />}
+          icon={<PaymentsIcon />}
           value="/payments"
           style={{ minWidth: 10 }}
         />
         <BottomNavigationAction
-          icon={<LocalParkingIcon />}
+          icon={<TransfersIcon />}
           value="/transfer"
           style={{ minWidth: 10 }}
         />
@@ -60,11 +62,6 @@ class HomeBottomNavigation extends Component {
         <BottomNavigationAction
           icon={<AssignmentIcon />}
           value="/history"
-          style={{ minWidth: 10 }}
-        />
-        <BottomNavigationAction
-          icon={<FeedbackIcon />}
-          value="/feedback"
           style={{ minWidth: 10 }}
         />
       </BottomNavigation>

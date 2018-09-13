@@ -1,35 +1,49 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import BankAccountIcon from '@material-ui/icons/AccountBalance';
+import SelfAccountIcon from '@material-ui/icons/Sync';
+import CardIcon from '@material-ui/icons/CreditCard';
+import OtherBankIcon from '@material-ui/icons/Publish';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { Link } from 'react-router-dom'
+
+const items = [
+  {
+    name: 'own',
+    description: 'Между своими счетами',
+    icon: <SelfAccountIcon />
+  },
+  {
+    name: 'client',
+    description: 'Клиенту банка',
+    icon: <BankAccountIcon />
+  },
+  {
+    name: 'card',
+    description: 'На карту другого банка',
+    icon: <CardIcon />
+  },
+  {
+    name: 'account',
+    description: 'На счет другого банка',
+    icon: <OtherBankIcon />
+  },
+]
 
 
 export const listItems = (
   <div>
-    <ListItem button>
-    <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Между своими счетами" />
-    </ListItem>
-    <ListItem button>
-    <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Клиенту банка" />
-    </ListItem>
-    <ListItem button>
-    <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="На карту другого банка" />
-    </ListItem>
-    <ListItem button>
-    <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="На счет другого банка" />
-    </ListItem>
+    {items.map(i => (
+      <Link key={i.name} to={'/' + i.name} style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            {i.icon}
+          </ListItemIcon>
+          <ListItemText primary={i.description} />
+        </ListItem>
+      </Link>
+    ))
+    }
   </div>
 );

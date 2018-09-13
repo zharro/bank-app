@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-// import dzubaAvatar from '../../assets/images/dzuba.jpg';
-
 const styles = theme => ({
   root: {
     display: 'flex',

@@ -9,7 +9,9 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'flex-start',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   header: {
     marginRight: 'auto'

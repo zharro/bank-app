@@ -30,9 +30,9 @@ const styles = theme => ({
     margin: `${theme.spacing.unit}px 0`,
   },
   radioGroup: {
-      margin: `${theme.spacing.unit}px 0`,
-      flexDirection: 'row'
-    }
+    margin: `${theme.spacing.unit}px 0`,
+    flexDirection: 'row'
+  }
 });
 
 class RegistrationForm extends Component {
@@ -112,11 +112,11 @@ class RegistrationForm extends Component {
               <FormControlLabel value="male" control={<Radio />} label="Мужской" />
             </RadioGroup>
           </FormControl>
-          <Link to='/home'>
+          <Link to='/home' style={{ textDecoration: 'none' }}>
             <Button type="submit" variant="contained" color="primary" className={classes.formControl}>
-            Зарегистрироваться
+              Зарегистрироваться
           </Button>
-        </Link>
+          </Link>
         </form>
       </div>
     );

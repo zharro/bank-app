@@ -10,14 +10,29 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'flex-start',
   },
   header: {
     marginRight: 'auto'
   }
 });
 
-class Autopayment extends Component {
+class Transfer extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selected: ''
+    }
+  }
+
+  handleSelect = (name) => {
+    this.setState({selected: name})
+  }
+
+  handleSuccess = () => {
+    this.setState({selected: ''})
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -30,8 +45,8 @@ class Autopayment extends Component {
   }
 }
 
-Autopayment.propTypes = {
+Transfer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Autopayment);
+export default withStyles(styles)(Transfer);
