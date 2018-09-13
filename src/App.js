@@ -120,6 +120,26 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
 //     />
 //   );
 
+export const routes = [
+  { path:"/home", component: HomePage, name: 'Главная'},
+  { path:"/payments", component: Payments, name: 'Платежи'},
+  { path:"/templates", component: Templates, name: 'Шаблоны'},
+  { path:"/autopayment", component: Autopayment, name: 'Автоплатежи'},
+  { path:"/QR", component: QR, name: 'QR-код'},
+  { path:"/QR/success", component: QRSuccess, name: 'QR-код'},
+  { path:"/money", component: Money, name: 'Наличные'},
+  { path:"/partner", component: Partner, name: 'Наличные'},
+  { path:"/bank", component: Bank, name: 'Наличные'},
+  { path:"/gosuslugi", component: Gosuslugi, name: 'Платежи'},
+  { path:"/feedback", component: Feedback, name: 'Обратная связь'},
+  { path:"/history", component: HistoryPage, name: 'Выписка'},
+  { path:"/transfer", component: Transfer, name: 'Переводы'},
+  { path:"/own", component: Own, name: 'Переводы'},
+  { path:"/client", component: Client, name: 'Переводы'},
+  { path:"/card", component: Card, name: 'Переводы'},
+  { path:"/account", component: Account, name: 'Переводы'}
+]
+
 class App extends Component {
   render() {
     return (
@@ -127,23 +147,8 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={Registration} />
-            <AppRoute layout={Layout} path="/home" component={HomePage} />
-            <AppRoute layout={Layout} path="/payments" component={Payments} />
-            <AppRoute layout={Layout} path="/templates" component={Templates} />
-            <AppRoute layout={Layout} path="/autopayment" component={Autopayment} />
-            <AppRoute exact layout={Layout} path="/QR" component={QR} />
-            <AppRoute layout={Layout} path="/QR/success" component={QRSuccess} />
-            <AppRoute layout={Layout} path="/money" component={Money} />
-            <AppRoute layout={Layout} path="/partner" component={Partner} />
-            <AppRoute layout={Layout} path="/bank" component={Bank} />
-            <AppRoute layout={Layout} path="/gosuslugi" component={Gosuslugi} />
-            <AppRoute layout={Layout} path="/feedback" component={Feedback} />
-            <AppRoute layout={Layout} path="/history" component={HistoryPage} />
-            <AppRoute layout={Layout} path="/transfer" component={Transfer} />
-            <AppRoute layout={Layout} path="/own" component={Own} />
-            <AppRoute layout={Layout} path="/client" component={Client} />
-            <AppRoute layout={Layout} path="/card" component={Card} />
-            <AppRoute layout={Layout} path="/account" component={Account} />
+            { routes.map(r => <AppRoute key={r.path} exact layout={Layout} path={r.path} component={r.component}/>)}
+
           </div>
         </Router>
       </Provider>

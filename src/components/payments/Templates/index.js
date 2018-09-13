@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import UtilitiesIcon from '@material-ui/icons/Domain';
+import InternetIcon from '@material-ui/icons/Wifi';
+
 
 import ListItems from './List'
-import Header from '../../common/Header'
 import Template from './Template'
 
 const styles = theme => ({
@@ -22,14 +24,17 @@ const styles = theme => ({
 const templates = [
   {
     name: "Коммуналка",
+    icon: <UtilitiesIcon/>,
     sum: 2500
   },
   {
     name: "Телефон",
+    icon: <UtilitiesIcon/>,
     sum: 500
   },
   {
     name: "Интернет",
+    icon: <InternetIcon/>,
     sum: 1000
   },
 ]
@@ -56,7 +61,6 @@ class Templates extends Component {
 
     return (
       <div className={classes.root}>
-        <Header>Шаблоны</Header>
         { selected !== '' ? <Template {...templates.find(t => t.name === selected)} onSuccess={this.handleSuccess}/>
           :<ListItems templates={templates} onSelect={this.handleSelect}/>
         }

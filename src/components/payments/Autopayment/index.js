@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import TransfersIcon from '@material-ui/icons/NearMe';
+import SchoolIcon from '@material-ui/icons/School';
+import UtilitiesIcon from '@material-ui/icons/Domain';
 
 import ListItems from './List'
-import Header from '../../common/Header'
 import Autopayment from './Autopayment'
 
 const styles = theme => ({
@@ -21,19 +23,22 @@ const styles = theme => ({
 
 const autopayments = [
   {
-    name: "Сад",
+    name: "Детский сад",
+    icon: <SchoolIcon/>,
     sum: 4500,
     card: 'Кредитная',
     period: 'month'
   },
   {
     name: "Футбол",
+    icon: <TransfersIcon/>,
     sum: 2000,
     card: 'Дебетовая',
     period: 'week'
   },
   {
     name: "МосЭнергоСбыт",
+    icon: <UtilitiesIcon/>,
     sum: 400,
     card: 'Дебетовая',
     period: 'month'
@@ -62,7 +67,6 @@ class Autopayments extends Component {
 
     return (
       <div className={classes.root}>
-        <Header>Автоплатежи</Header>
         { selected !== '' ? <Autopayment {...autopayments.find(t => t.name === selected)} onSuccess={this.handleSuccess}/>
           :<ListItems autopayments={autopayments} onSelect={this.handleSelect}/>
         }

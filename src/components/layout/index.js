@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import BottomNavigation from './BottomNavigation';
-import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import FeedbackIcon from '@material-ui/icons/Feedback';
+import AppBar from './AppBar';
 
 const styles = theme => ({
   root: {
@@ -38,7 +34,6 @@ class Layout extends React.Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <Grid
         container
@@ -48,20 +43,7 @@ class Layout extends React.Component {
         alignItems="stretch"
       >
         <Grid item>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="title" color="inherit">
-                AppBar
-              </Typography>
-              <div>
-                <Link to="/feedback">
-                  <IconButton>
-                    <FeedbackIcon nativeColor="white" />
-                  </IconButton>
-                </Link>
-              </div>
-            </Toolbar>
-          </AppBar>
+          <AppBar />
         </Grid>
         <Grid item className={classes.content}>
           {this.props.children}
@@ -79,4 +61,4 @@ Layout.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Layout);
+export default withRouter(withStyles(styles)(Layout));

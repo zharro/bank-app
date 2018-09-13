@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import { listItems } from './List'
-import Header from '../common/Header'
 
 
 const styles = theme => ({
@@ -38,7 +37,6 @@ class Transfer extends Component {
 
     return (
       <div className={classes.root}>
-        <Header>Переводы</Header>
         {listItems}
       </div>
     );
