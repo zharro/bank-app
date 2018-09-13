@@ -33,7 +33,7 @@ class Form  extends React.Component {
 } 
 
 Form.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
     // headerText: PropTypes.string.isRequired
   };
 

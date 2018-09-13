@@ -6,7 +6,8 @@ import SelfAccountIcon from '@material-ui/icons/Sync';
 import CardIcon from '@material-ui/icons/CreditCard';
 import OtherBankIcon from '@material-ui/icons/Publish';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
 
 const items = [
   {
@@ -32,7 +33,9 @@ const items = [
 ];
 
 export const listItems = (
-  <div>
+  <Grid container direction= 'column' alignItems='center'>
+    <Grid item>
+      <Grid container direction='column' alignItems='flex-start'>
     {items.map(i => (
       <Link key={i.name} to={'/' + i.name} style={{ textDecoration: 'none' }}>
         <ListItem button>
@@ -40,6 +43,9 @@ export const listItems = (
           <ListItemText primary={i.description} />
         </ListItem>
       </Link>
-    ))}
-  </div>
+    ))
+    }
+  </Grid>
+    </Grid>
+  </Grid>
 );

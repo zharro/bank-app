@@ -46,7 +46,6 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => {
   />
 )};
 
-
 export const routes = [
   { path:"/", component: Registration, name: 'Регистрация'},
   { path:"/home", component: HomePage, name: 'Главная'},

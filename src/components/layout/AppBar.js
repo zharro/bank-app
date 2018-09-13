@@ -10,6 +10,9 @@ import AppBar from '@material-ui/core/AppBar';
 import { routes } from '../../App';
 import Grid from '@material-ui/core/Grid';
 
+
+
+
 class Bar extends React.Component {
     getHeader = () => {
         let route = routes.find(
@@ -24,6 +27,13 @@ class Bar extends React.Component {
         </IconButton>
     )
 
+    backButton = () => (
+        <IconButton onClick={this.props.history.goBack}>
+            <ArrowBackIcon nativeColor="white" />
+        </IconButton>
+    )
+                            
+    
     render() {
         const { renderChat, back } = this.props
         return (

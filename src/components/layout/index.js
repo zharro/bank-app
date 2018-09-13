@@ -32,6 +32,8 @@ class Layout extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
+  
+
   render() {
     const { classes, history, back } = this.props;
     const renderLayout = history.location.pathname !== '/';
@@ -47,10 +49,14 @@ class Layout extends React.Component {
         <Grid item>
           <AppBar back={back} renderChat={renderLayout} />
         </Grid>
-        <Grid item className={classes.content}>
+        <Grid
+          container
+          direction="column"
+          className={classes.content}
+        >
           {this.props.children}
         </Grid>
-        {renderLayout && (
+        { renderLayout && (
           <Grid item>
             <BottomNavigation />
           </Grid>
