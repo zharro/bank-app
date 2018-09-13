@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { mainListItems, secondaryListItems} from './PaymentOptionsList'
+import { mainListItems, secondaryListItems } from './PaymentOptionsList';
 
 const styles = theme => ({
   root: {
@@ -10,21 +10,21 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
   header: {
-    marginRight: 'auto'
-  }
+    marginRight: 'auto',
+  },
 });
 
 class Payments extends Component {
-
   render() {
     const { classes } = this.props;
-    
+
     return (
       <div className={classes.root}>
         {mainListItems}
+        <br />
         {secondaryListItems}
       </div>
     );

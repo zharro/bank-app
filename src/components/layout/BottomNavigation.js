@@ -6,10 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import MoneyIcon from '@material-ui/icons/Money';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import HomeIcon from '@material-ui/icons/Home';
 import PaymentsIcon from '@material-ui/icons/ImportExport';
-import TransfersIcon from '@material-ui/icons/NearMe';
+import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
 
 const styles = theme => ({
   root: {
@@ -17,8 +18,12 @@ const styles = theme => ({
     // position:'absolute',
     // bottom: '0px',
     // backgroundColor: '#e8f4fd'
-  }
-})
+  },
+  selected: {
+    paddingTop: '6px',
+    color: '#fff',
+  },
+});
 
 class HomeBottomNavigation extends Component {
   state = {
@@ -45,12 +50,12 @@ class HomeBottomNavigation extends Component {
           style={{ minWidth: 10 }}
         />
         <BottomNavigationAction
-          icon={<PaymentsIcon />}
+          icon={<CreditCardIcon />}
           value="/payments"
           style={{ minWidth: 10 }}
         />
         <BottomNavigationAction
-          icon={<TransfersIcon />}
+          icon={<CompareArrowsIcon />}
           value="/transfer"
           style={{ minWidth: 10 }}
         />
@@ -60,7 +65,7 @@ class HomeBottomNavigation extends Component {
           style={{ minWidth: 10 }}
         />
         <BottomNavigationAction
-          icon={<AssignmentIcon />}
+          icon={<FormatListBulletedIcon />}
           value="/history"
           style={{ minWidth: 10 }}
         />

@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import Alert from './Alert'
+import Alert from './Alert';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -21,38 +20,44 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
-  menu: {
-  },
+  menu: {},
 });
-
 
 class SimpleSelect extends React.Component {
   state = {
-    showAlert: false
+    showAlert: false,
   };
 
-
   onClick = () => {
-    this.setState({showAlert: true})
-  }
+    this.setState({ showAlert: true });
+  };
 
   onClose = () => {
     this.setState({
       showAlert: false,
-    })
-    this.props.onClose()
-  }
+    });
+    this.props.onClose();
+  };
 
   render() {
     const { classes } = this.props;
     return (
-        <div className={classes.root}>
-          
-          <Button variant="contained" color="primary" className={classes.button} onClick={this.onClick}>
-            {this.props.buttonText}
-          </Button>
-          <Alert text={this.props.alertText} open={this.state.showAlert} handleClose={this.onClose}/>
-        </div>
+      <div className={classes.root}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={this.onClick}
+        >
+          {this.props.buttonText}
+        </Button>
+        <Alert
+          text={this.props.alertText}
+          open={this.state.showAlert}
+          handleClose={this.onClose}
+          component={this.props.component}
+        />
+      </div>
     );
   }
 }

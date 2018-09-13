@@ -6,13 +6,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Form from '../../common/Form'
-import SubmitButton from '../../common/SubmitButton'
- 
+import Form from '../../common/Form';
+import SubmitButton from '../../common/SubmitButton';
+import QRCode from 'react-qr-code';
+
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -22,24 +23,21 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
-  menu: {
-  },
+  menu: {},
 });
 
 class SimpleSelect extends React.Component {
   state = {
     partner: '',
     sum: '',
-    showPayStatus: 'false'
+    showPayStatus: 'false',
   };
-
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
 
   handleChange2 = name => event => {
     this.setState({
@@ -48,20 +46,20 @@ class SimpleSelect extends React.Component {
   };
 
   onPay = () => {
-    this.setState({showPayStatus: true})
-  }
+    this.setState({ showPayStatus: true });
+  };
   onPayStatusClose = () => {
     this.setState({
       partner: '',
-      sum: ''
-    })
-  }
+      sum: '',
+    });
+  };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <Form headerText='Получить наличные'>
+      <Form headerText="Получить наличные">
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="partnerId">Выберите партнера</InputLabel>
           <Select
@@ -73,24 +71,27 @@ class SimpleSelect extends React.Component {
             }}
           >
             <MenuItem value={'euroset'}>Евросеть</MenuItem>
-            <MenuItem value={'wu'}>WesternUnion</MenuItem>
+            <MenuItem value={'wu'}>Перекресток</MenuItem>
             <MenuItem value={'sv'}>Связной</MenuItem>
           </Select>
           <TextField
             id="number"
             label="Сумма"
             value={this.state.sum}
-          onChange={this.handleChange2('sum')}
-          type="number"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
-        <SubmitButton alertText={'Заявка отправлена'} 
-          buttonText={'Получить'} 
-          onClose={this.onPayStatusClose} />
+            onChange={this.handleChange2('sum')}
+            type="number"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
+          />
+          <SubmitButton
+            alertText={'Предъявите кассиру'}
+            buttonText={'Получить'}
+            component={<QRCode value="hey" size={100} />}
+            onClose={this.onPayStatusClose}
+          />
         </FormControl>
       </Form>
     );

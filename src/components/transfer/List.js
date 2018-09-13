@@ -6,44 +6,40 @@ import SelfAccountIcon from '@material-ui/icons/Sync';
 import CardIcon from '@material-ui/icons/CreditCard';
 import OtherBankIcon from '@material-ui/icons/Publish';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const items = [
   {
     name: 'own',
     description: 'Между своими счетами',
-    icon: <SelfAccountIcon />
+    icon: <SelfAccountIcon />,
   },
   {
     name: 'client',
     description: 'Клиенту банка',
-    icon: <BankAccountIcon />
+    icon: <BankAccountIcon />,
   },
   {
     name: 'card',
     description: 'На карту другого банка',
-    icon: <CardIcon />
+    icon: <CardIcon />,
   },
   {
     name: 'account',
-    description: 'На счет другого банка',
-    icon: <OtherBankIcon />
+    description: 'На счет в другом банке',
+    icon: <OtherBankIcon />,
   },
-]
-
+];
 
 export const listItems = (
   <div>
     {items.map(i => (
       <Link key={i.name} to={'/' + i.name} style={{ textDecoration: 'none' }}>
         <ListItem button>
-          <ListItemIcon>
-            {i.icon}
-          </ListItemIcon>
+          <ListItemIcon>{i.icon}</ListItemIcon>
           <ListItemText primary={i.description} />
         </ListItem>
       </Link>
-    ))
-    }
+    ))}
   </div>
 );

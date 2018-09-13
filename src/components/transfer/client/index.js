@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-import Form from '../../common/Form'
-import CardSelect from '../../common/CardSelect'
-import SubmitButton from '../../common/SubmitButton'
+import Form from '../../common/Form';
+import CardSelect from '../../common/CardSelect';
+import SubmitButton from '../../common/SubmitButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import QRCode from 'react-qr-code';
 
 function TabContainer(props) {
   return (
@@ -26,22 +27,22 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  }
+  },
 });
 
 class Template extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       card: '',
       sum: props.sum,
       number: '',
-      tab: 0
+      tab: 0,
     };
   }
-  
+
   handleChange = event => {
-    this.setState({ 
+    this.setState({
       [event.target.name]: event.target.value,
     });
   };
@@ -51,57 +52,69 @@ class Template extends React.Component {
   };
 
   onPay = () => {
-    this.setState({showPayStatus: true})
-  }
- 
+    this.setState({ showPayStatus: true });
+  };
+
   onSuccess = () => {
-    this.props.history.push('/transfer')
-  }
+    this.props.history.push('/transfer');
+  };
   render() {
-    const { classes } = this.props
-    const { sum,number,tab } = this.state
+    const { classes } = this.props;
+    const { sum, number, tab } = this.state;
     return (
-      <Form headerText='Клиенту банка'>
-        <Tabs name='tab' value={tab} onChange={this.handleTabChange}>
-            <Tab label="По номеру телефона" />
-            <Tab label="По номеру карты" />
-          </Tabs>
-        {tab === 0 && <TextField
+      <Form headerText="Клиенту банка">
+        <Tabs
+          name="tab"
+          value={tab}
+          onChange={this.handleTabChange}
+          centered
+          fullWidth
+        >
+          <Tab label="По телефону" />
+          <Tab label="По карте" />
+        </Tabs>
+        {tab === 0 && (
+          <TextField
             id="number"
-            name='number'
+            name="number"
             label="Номер телефона"
             type="number"
             className={classes.textField}
             margin="normal"
             value={number}
             onChange={this.handleChange}
-        />}
-        {tab === 1 && <TextField
+          />
+        )}
+        {tab === 1 && (
+          <TextField
             id="number"
-            name='number'
+            name="number"
             label="Номер карты получателя"
             type="number"
             className={classes.textField}
             margin="normal"
             value={number}
             onChange={this.handleChange}
-        />}
-          
-          <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
+          />
+        )}
 
-          <TextField
-            id="sum"
-            name='sum'
-            label="Сумма"
-            type="number"
-            className={classes.textField}
-            margin="normal"
-            value={sum}
-            onChange={this.handleChange}
+        <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
+
+        <TextField
+          id="sum"
+          name="sum"
+          label="Сумма"
+          type="number"
+          className={classes.textField}
+          margin="normal"
+          value={sum}
+          onChange={this.handleChange}
         />
-        <SubmitButton alertText={'Оплата прошла успешно'} 
-          buttonText={'Оплатить'} 
-          onClose={this.onSuccess} />
+        <SubmitButton
+          alertText={'Оплата прошла успешно'}
+          buttonText={'Оплатить'}
+          onClose={this.onSuccess}
+        />
       </Form>
     );
   }

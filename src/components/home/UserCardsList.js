@@ -11,7 +11,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   card: {
     paddingLeft: theme.spacing.unit * 2,
@@ -26,20 +26,20 @@ class UserCardsList extends Component {
       <div className={classes.root}>
         <List component="nav">
           <ListItem className={classes.card} button>
-            <Avatar>
-              <CardIcon color="primary"/>
+            <Avatar style={{ backgroundColor: '#3748AC' }}>
+              <CardIcon />
             </Avatar>
             <ListItemText primary="20340.00 ₽" secondary="Газпромнефть *3424" />
           </ListItem>
           <ListItem className={classes.card} button>
             <Avatar>
-              <CardIcon/>
+              <CardIcon />
             </Avatar>
             <ListItemText primary="2014.23 ₽" secondary="Travel Miles *5345" />
           </ListItem>
           <ListItem className={classes.card} button>
             <Avatar>
-              <CardIcon/>
+              <CardIcon />
             </Avatar>
             <ListItemText primary="200.00 ₽" secondary="Карта МИР *2423" />
           </ListItem>

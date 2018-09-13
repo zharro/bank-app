@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,21 +8,34 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import GosuslugiIcon from '@material-ui/icons/BusinessCenter';
 import TransportIcon from '@material-ui/icons/DriveEta';
 import InternetIcon from '@material-ui/icons/Wifi';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import StarRateIcon from '@material-ui/icons/StarRate';
+import Forward30Icon from '@material-ui/icons/Forward30';
+import { Divider } from '@material-ui/core';
 
 export const mainListItems = (
   <div>
-    <Link to='/templates' style={{ textDecoration: 'none' }}>
+    <Link to="/templates" style={{ textDecoration: 'none' }}>
       <ListItem button>
+        <ListItemIcon>
+          <StarRateIcon />
+        </ListItemIcon>
         <ListItemText primary="Шаблоны" />
       </ListItem>
     </Link>
-    <Link to='/autopayment' style={{ textDecoration: 'none' }}>
+    <Link to="/autopayment" style={{ textDecoration: 'none' }}>
       <ListItem button>
+        <ListItemIcon>
+          <Forward30Icon />
+        </ListItemIcon>
         <ListItemText primary="Автоплатежи" />
       </ListItem>
     </Link>
-    <Link to='/QR' style={{ textDecoration: 'none' }}>
+    <Link to="/QR" style={{ textDecoration: 'none' }}>
       <ListItem button>
+        <ListItemIcon>
+          <FullscreenIcon />
+        </ListItemIcon>
         <ListItemText primary="QR-код" />
       </ListItem>
     </Link>
@@ -31,15 +44,16 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset></ListSubheader>
-    <Link to='/gosuslugi' style={{ textDecoration: 'none' }}>
-
-    <ListItem button>
-      <ListItemIcon>
-        <GosuslugiIcon />
-      </ListItemIcon>
-      <ListItemText primary="Госуслуги" style={{ textDecoration: 'none' }}/>
-    </ListItem>
+    <Divider />
+    <br />
+    <ListSubheader inset />
+    <Link to="/gosuslugi" style={{ textDecoration: 'none' }}>
+      <ListItem button>
+        <ListItemIcon>
+          <GosuslugiIcon />
+        </ListItemIcon>
+        <ListItemText primary="Госуслуги" style={{ textDecoration: 'none' }} />
+      </ListItem>
     </Link>
     <ListItem button>
       <ListItemIcon>

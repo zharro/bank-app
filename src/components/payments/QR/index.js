@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import AspectRatioIcon from '@material-ui/icons/AspectRatio';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 const styles = theme => ({
   root: {
@@ -26,7 +26,7 @@ class QR extends Component {
     return (
       <div className={classes.root}>
         <Button onClick={this.onButtonClick}>
-          <AspectRatioIcon style={{ fontSize: 50 }} />
+          <FullscreenIcon style={{ fontSize: 70 }} />
           Сканировать
         </Button>
       </div>

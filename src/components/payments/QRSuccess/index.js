@@ -25,18 +25,21 @@ const Confirmation = props => (
         <CardContent>
           <List>
             <ListItem>
-              <ListItemText primary={'ИНН'} secondary={props.inn} />
+              <ListItemText
+                primary={'ИНН'}
+                secondary={props.inn || '1234567890'}
+              />
             </ListItem>
             <ListItem>
               <ListItemText
                 primary={'Расчетный счет'}
-                secondary={props.invoice}
+                secondary={props.invoice || 'A123B12312312'}
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 primary={'Сумма'}
-                secondary={`${props.amount} руб.`}
+                secondary={`${props.amount || '1203.88'} руб.`}
               />
             </ListItem>
           </List>
