@@ -37,7 +37,7 @@ class Registration extends React.Component {
       middleName: null,
       phone: '+7',
       email: null,
-      sex: null,
+      sex: "",
     };
   }
 
@@ -48,7 +48,7 @@ class Registration extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    
         return (
             <Form className={classes.form}>
                 <FormControl className={classes.formControl}>
@@ -99,7 +99,7 @@ class Registration extends React.Component {
                         aria-label="Gender"
                         name="sex"
                         className={classes.radioGroup}
-                        value={this.state.value}
+                        value={this.state.sex}
                         onChange={this.handleChange}
                     >
                         <FormControlLabel value="female" control={<Radio />} label="Женский" />
