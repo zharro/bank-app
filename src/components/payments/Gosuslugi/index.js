@@ -8,32 +8,28 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 import Form from '../../common/Form';
 import SubmitButton from '../../common/SubmitButton';
 import CardSelect from '../../common/CardSelect';
+import { FormGroup } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    overflow: 'auto',
+    flexWrap: 'nowrap'
   },
   formControl: {
-    margin: theme.spacing.unit,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  menu: {},
-  select: {
-    paddingTop: '10px',
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+  }
 });
 
 class Gosuslugi extends React.Component {
@@ -70,19 +66,27 @@ class Gosuslugi extends React.Component {
     switch (param) {
       case 'req':
         return (
-          <div className={classes.root}>
-            <CardSelect
-              cardName={this.state.card}
-              onSelect={this.handleChange}
-            />
+          // <div>
+          <FormGroup className={classes.root}>
+            <FormControl className={classes.formControl}>
+              <CardSelect
+                cardName={this.state.card}
+                onSelect={this.handleChange}
+              />
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
 
             <TextField
               id="number"
               label="ИНН"
               type="number"
               className={classes.textField}
-              margin="normal"
+              // margin="normal"
             />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+
             <TextField
               id="number"
               label="КПП"
@@ -90,6 +94,10 @@ class Gosuslugi extends React.Component {
               className={classes.textField}
               margin="normal"
             />
+                        </FormControl>
+
+                        <FormControl className={classes.formControl}>
+
             <TextField
               id="number"
               label="Расчетный счет"
@@ -97,6 +105,10 @@ class Gosuslugi extends React.Component {
               className={classes.textField}
               margin="normal"
             />
+                        </FormControl>
+
+                        <FormControl className={classes.formControl}>
+
             <FormControlLabel
               control={
                 <Switch
@@ -108,6 +120,10 @@ class Gosuslugi extends React.Component {
               }
               label="Создать автоплатеж"
             />
+                        </FormControl>
+
+                        <FormControl className={classes.formControl}>
+
             <FormControlLabel
               control={
                 <Switch
@@ -119,12 +135,15 @@ class Gosuslugi extends React.Component {
               }
               label="Создать шаблон"
             />
+                        </FormControl>
+
             <SubmitButton
               alertText={'Оплата прошла успешно'}
               buttonText={'Оплатить'}
               onClose={this.onPayStatusClose}
             />
-          </div>
+             </FormGroup>
+          // </div>
         );
       case 'qr':
         return (
@@ -143,8 +162,11 @@ class Gosuslugi extends React.Component {
   }
   render() {
     const { payOption } = this.state;
+    const { classes } = this.props
     return (
-      <Form headerText="Госуслуги">
+      <FormGroup className={classes.root}>
+        <FormControl className={classes.formControl}>
+
         {payOption ? null : (
           <InputLabel htmlFor="payOption">Выберите способ оплаты</InputLabel>
         )}
@@ -159,8 +181,10 @@ class Gosuslugi extends React.Component {
           <MenuItem value={'req'}>Оплата по реквизитам</MenuItem>
           <MenuItem value={'qr'}>Оплата по QR</MenuItem>
         </Select>
+        </FormControl>
+
         {this.renderSwitch(payOption)}
-      </Form>
+      </FormGroup>
     );
   }
 }

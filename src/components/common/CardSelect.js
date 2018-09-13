@@ -9,12 +9,12 @@ import {cards} from '../../storage'
 
 const styles = theme => ({
     formControl: {
-      margin: theme.spacing.unit,
+    //   margin: theme.spacing.unit,
     },
     select: {
       paddingTop: '10px',
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit
+    //   marginLeft: theme.spacing.unit,
+    //   marginRight: theme.spacing.unit
     }
   });
 
