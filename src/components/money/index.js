@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import { listItems } from './MoneyOptionsList'
-import Header from '../common/Header'
 
 const styles = theme => ({
   root: {
@@ -24,7 +23,6 @@ class Money extends Component {
 
     return (
       <div className={classes.root}>
-        <Header>Получить наличные</Header>
         {listItems}
       </div>
     );

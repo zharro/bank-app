@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Button from '@material-ui/core/Button';
-
 import { withStyles } from '@material-ui/core/styles';
 import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 
@@ -27,7 +25,6 @@ class QR extends Component {
 
     return (
       <div className={classes.root}>
-        <h2>QR</h2>
         <Button onClick={this.onButtonClick}>
           <AspectRatioIcon style={{ fontSize: 50 }} />
           Сканировать

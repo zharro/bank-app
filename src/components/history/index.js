@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from './Table'
-import Header from '../common/Header'
 
 const styles = theme => ({
   root: {
@@ -21,7 +20,6 @@ class History extends Component {
 
     return (
       <div className={classes.root}>
-        <Header>История</Header>
         <Table/>
       </div>
     );

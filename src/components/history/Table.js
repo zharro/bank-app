@@ -14,28 +14,27 @@ const styles = theme => ({
 
 });
 
-let id = 0;
-function createData(name, sum, date, card) {
-  id += 1;
-  return { id, name, sum, date, card };
-}
+// let id = 0;
+// function createData(name, sum, date, card) {
+//   id += 1;
+//   return { id, name, sum, date, card };
+// }
 
 const spents = [
-  { pointIcon: <FitnessIcon/>, amount: '1200.00 ₽', details: '*2423, сегодня' },
-  { pointIcon: <BeachIcon/>, amount: '13500.20 ₽', details: '*5345, сегодня' },
-  { pointIcon: <TaxiIcon/>, amount: '667.00 ₽', details: '*2423, вчера' },
-  { pointIcon: <GroceryIcon/>, amount: '34.00 ₽', details: '*2423, 10 сентября' },
-  { pointIcon: <TaxiIcon/>, amount: '443.00 ₽', details: '*2423, 9 сентября' }
+  { id: 1, pointIcon: <FitnessIcon/>, amount: '1200.00 ₽', details: '*2423, сегодня' },
+  { id: 2,pointIcon: <BeachIcon/>, amount: '13500.20 ₽', details: '*5345, сегодня' },
+  { id: 3,pointIcon: <TaxiIcon/>, amount: '667.00 ₽', details: '*2423, вчера' },
+  { id: 4,pointIcon: <GroceryIcon/>, amount: '34.00 ₽', details: '*2423, 10 сентября' },
+  { id: 5,pointIcon: <TaxiIcon/>, amount: '443.00 ₽', details: '*2423, 9 сентября' }
 ];
 
-function SimpleTable(props) {
-  const { classes } = props;
+function SimpleTable() {
 
   return (
   <List component="nav">
     {spents.map(spent => {
       return (
-        <ListItem>
+        <ListItem key={spent.id}>
         <Avatar>
           {spent.pointIcon}
         </Avatar>
