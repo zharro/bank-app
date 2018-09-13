@@ -16,8 +16,11 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  form: {
+    overflow: 'auto',
+  },
   formControl: {
-    margin: theme.spacing.unit,
+    minHeight: '70px'
   },
   radioGroup: {
     margin: `${theme.spacing.unit}px 0`,
@@ -47,25 +50,32 @@ class Registration extends React.Component {
     const { classes } = this.props;
 
         return (
-            <Form>
+            <Form className={classes.form}>
+                <FormControl className={classes.formControl}>
                 <TextField
                     name="lastName"
                     label="Фамилия"
                     className={classes.formControl}
                     onChange={this.handleChange}
                 />
+                </FormControl>
+                <FormControl className={classes.formControl}>
                 <TextField
                     name="name"
                     label="Имя"
                     className={classes.formControl}
                     onChange={this.handleChange}
                 />
+                </FormControl>
+                <FormControl className={classes.formControl}>
                 <TextField
                     name="middleName"
                     label="Отчество"
                     className={classes.formControl}
                     onChange={this.handleChange}
                 />
+                </FormControl>
+                <FormControl className={classes.formControl}>
                 <TextField
                     name="phone"
                     label="Телефон"
@@ -73,6 +83,8 @@ class Registration extends React.Component {
                     type="tel"
                     onChange={this.handleChange}
                 />
+                </FormControl>
+                <FormControl className={classes.formControl}>
                 <TextField
                     name="email"
                     label="Email"
@@ -80,6 +92,7 @@ class Registration extends React.Component {
                     type="email"
                     onChange={this.handleChange}
                 />
+                </FormControl>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormLabel component="legend">Пол</FormLabel>
                     <RadioGroup
