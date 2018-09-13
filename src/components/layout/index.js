@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 
@@ -21,10 +21,9 @@ const styles = theme => ({
   },
   content: {
     flex: 1,
-    flexGrow: 1,
     overflow: 'auto',
     padding: theme.spacing.unit * 2,
-    backgroundColor: '#e8f4fd'
+    backgroundColor: '#fff',
   },
   menuButton: {
     marginLeft: -12,
@@ -55,7 +54,7 @@ class Layout extends React.Component {
                 AppBar
               </Typography>
               <div>
-                <Link to='/feedback'>
+                <Link to="/feedback">
                   <IconButton>
                     <FeedbackIcon nativeColor="white" />
                   </IconButton>
@@ -64,11 +63,7 @@ class Layout extends React.Component {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid
-          container
-          direction="column"
-          className={classes.content}
-        >
+        <Grid item className={classes.content}>
           {this.props.children}
         </Grid>
         <Grid item>
