@@ -10,7 +10,6 @@ import {
   Button,
   CardActions,
   CardMedia,
-  Avatar,
 } from '@material-ui/core';
 import CheckedCircleIcon from '@material-ui/icons/CheckCircle';
 import qs from 'qs';
@@ -18,13 +17,8 @@ import qs from 'qs';
 const Confirmation = props => (
   <Grid alignItems={'center'} direction={'column'} container>
     <Grid item>
-      <Avatar
-        src={'./images/rjd_logo.jpg'}
-        style={{ height: 100, width: 100 }}
-      />
-    </Grid>
-    <Grid item>
       <Card>
+        <CardMedia style={{ height: 90 }} image={'./images/rjd_logo.jpg'} />
         <CardContent>
           <List>
             <ListItem>
