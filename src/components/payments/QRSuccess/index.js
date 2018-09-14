@@ -18,10 +18,7 @@ const Confirmation = props => (
   <Grid alignItems={'center'} direction={'column'} container>
     <Grid item>
       <Card>
-        <CardMedia
-          style={{ height: 90 }}
-          image={'http://cinet.rzd.ru/dbmm/images/65/121/202'}
-        />
+        <CardMedia style={{ height: 90 }} image={'./images/rjd_logo.jpeg'} />
         <CardContent>
           <List>
             <ListItem>
