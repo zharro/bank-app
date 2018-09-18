@@ -77,72 +77,72 @@ class Gosuslugi extends React.Component {
 
             <FormControl className={classes.formControl}>
 
-            <TextField
-              id="number"
-              label="ИНН"
-              type="number"
-              className={classes.textField}
+              <TextField
+                id="number"
+                label="ИНН"
+                type="number"
+                className={classes.textField}
               // margin="normal"
-            />
+              />
             </FormControl>
             <FormControl className={classes.formControl}>
 
-            <TextField
-              id="number"
-              label="КПП"
-              type="number"
-              className={classes.textField}
-              margin="normal"
-            />
-                        </FormControl>
+              <TextField
+                id="number"
+                label="КПП"
+                type="number"
+                className={classes.textField}
+                margin="normal"
+              />
+            </FormControl>
 
-                        <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl}>
 
-            <TextField
-              id="number"
-              label="Расчетный счет"
-              type="number"
-              className={classes.textField}
-              margin="normal"
-            />
-                        </FormControl>
+              <TextField
+                id="number"
+                label="Расчетный счет"
+                type="number"
+                className={classes.textField}
+                margin="normal"
+              />
+            </FormControl>
 
-                        <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl}>
 
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.checkedA}
-                  onChange={this.handleCheck('checkedA')}
-                  value="checkedA"
-                  color={'primary'}
-                />
-              }
-              label="Создать автоплатеж"
-            />
-                        </FormControl>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={this.state.checkedA}
+                    onChange={this.handleCheck('checkedA')}
+                    value="checkedA"
+                    color={'primary'}
+                  />
+                }
+                label="Создать автоплатеж"
+              />
+            </FormControl>
 
-                        <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl}>
 
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.checkedB}
-                  onChange={this.handleCheck('checkedB')}
-                  value="checkedB"
-                  color={'primary'}
-                />
-              }
-              label="Создать шаблон"
-            />
-                        </FormControl>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={this.state.checkedB}
+                    onChange={this.handleCheck('checkedB')}
+                    value="checkedB"
+                    color={'primary'}
+                  />
+                }
+                label="Создать шаблон"
+              />
+            </FormControl>
 
             <SubmitButton
               alertText={'Оплата прошла успешно'}
               buttonText={'Оплатить'}
               onClose={this.onPayStatusClose}
             />
-             </FormGroup>
+          </FormGroup>
           // </div>
         );
       case 'qr':
@@ -167,20 +167,20 @@ class Gosuslugi extends React.Component {
       <FormGroup className={classes.root}>
         <FormControl className={classes.formControl}>
 
-        {payOption ? null : (
-          <InputLabel htmlFor="payOption">Выберите способ оплаты</InputLabel>
-        )}
-        <Select
-          value={this.state.payOption}
-          onChange={this.handleChange}
-          inputProps={{
-            name: 'payOption',
-            id: 'payOption',
-          }}
-        >
-          <MenuItem value={'req'}>Оплата по реквизитам</MenuItem>
-          <MenuItem value={'qr'}>Оплата по QR</MenuItem>
-        </Select>
+          {payOption ? null : (
+            <InputLabel htmlFor="payOption">Выберите способ оплаты</InputLabel>
+          )}
+          <Select
+            value={this.state.payOption}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'payOption',
+              id: 'payOption',
+            }}
+          >
+            <MenuItem value={'req'}>Оплата по реквизитам</MenuItem>
+            <MenuItem value={'qr'}>Оплата по QR</MenuItem>
+          </Select>
         </FormControl>
 
         {this.renderSwitch(payOption)}

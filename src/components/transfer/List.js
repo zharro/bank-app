@@ -33,19 +33,19 @@ const items = [
 ];
 
 export const listItems = (
-  <Grid container direction= 'column' alignItems='center'>
+  <Grid container direction='column' alignItems='center'>
     <Grid item>
       <Grid container direction='column' alignItems='flex-start'>
-    {items.map(i => (
-      <Link key={i.name} to={'/' + i.name} style={{ textDecoration: 'none' }}>
-        <ListItem button>
-          <ListItemIcon>{i.icon}</ListItemIcon>
-          <ListItemText primary={i.description} />
-        </ListItem>
-      </Link>
-    ))
-    }
-  </Grid>
+        {items.map(i => (
+          <Link key={i.name} to={'/' + i.name} style={{ textDecoration: 'none' }}>
+            <ListItem button>
+              <ListItemIcon>{i.icon}</ListItemIcon>
+              <ListItemText primary={i.description} />
+            </ListItem>
+          </Link>
+        ))
+        }
+      </Grid>
     </Grid>
   </Grid>
 );

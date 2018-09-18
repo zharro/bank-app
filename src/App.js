@@ -9,6 +9,7 @@ import * as reducers from './reducers';
 import './App.css';
 import Registration from './components/register';
 import HomePage from './components/home/HomePage';
+import AddCard from './components/addCard';
 import Payments from './components/payments';
 import Money from './components/money';
 import Feedback from './components/feedback';
@@ -26,6 +27,11 @@ import Partner from './components/money/partner';
 import Bank from './components/money/bank';
 import Gosuslugi from './components/payments/Gosuslugi';
 import QRSuccess from './components/payments/QRSuccess';
+import AddCardFromVk from './components/addCard/vk';
+import VkCardsList from './components/addCard/vk/CardsList';
+import AddCardFromPhone from './components/addCard/phone';
+import PhoneCardsList from './components/addCard/phone/CardsList';
+import AddCardByRequisites from './components/addCard/requisites';
 
 const reducer = combineReducers({
   ...reducers,
@@ -50,6 +56,12 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => {
 export const routes = [
   { path: '/', component: Registration, name: 'Регистрация' },
   { path: '/home', component: HomePage, name: 'Главная' },
+  { path: '/addCard', component: AddCard, name: 'Привязать карту' },
+  { path: '/addCard/social', component: AddCardFromVk, name: 'Карты Вконтакте' },
+  { path: '/addCard/social/list', component: VkCardsList, name: 'Карты Вконтакте' },
+  { path: '/addCard/phone', component: AddCardFromPhone, name: 'По номеру телефона' },
+  { path: '/addCard/phone/list', component: PhoneCardsList, name: 'По номеру телефона' },
+  { path: '/addCard/requisites', component: AddCardByRequisites, name: 'По реквизитам' },
   { path: '/payments', component: Payments, name: 'Платежи' },
   { path: '/templates', component: Templates, name: 'Шаблоны', back: true },
   {
@@ -61,16 +73,16 @@ export const routes = [
   { path: '/QR', component: QR, name: 'QR-код', back: true },
   { path: '/QR/success', component: QRSuccess, name: 'QR-код' },
   { path: '/money', component: Money, name: 'Наличные' },
-  { path: '/partner', component: Partner, name: 'Наличные', back: true },
-  { path: '/bank', component: Bank, name: 'Наличные', back: true },
+  { path: '/partner', component: Partner, name: 'В кассе партнера', back: true },
+  { path: '/bank', component: Bank, name: 'В банке-партнере', back: true },
   { path: '/gosuslugi', component: Gosuslugi, name: 'Платежи', back: true },
   { path: '/feedback', component: Feedback, name: 'Обратная связь' },
   { path: '/history', component: HistoryPage, name: 'Выписка' },
   { path: '/transfer', component: Transfer, name: 'Переводы' },
-  { path: '/own', component: Own, name: 'Переводы', back: true },
-  { path: '/client', component: Client, name: 'Переводы', back: true },
-  { path: '/card', component: Card, name: 'Переводы', back: true },
-  { path: '/account', component: Account, name: 'Переводы', back: true },
+  { path: '/own', component: Own, name: 'Между своими счетами', back: true },
+  { path: '/client', component: Client, name: 'Клиенту банка', back: true },
+  { path: '/card', component: Card, name: 'На карту другого банка', back: true },
+  { path: '/account', component: Account, name: 'На счет в другом банке', back: true },
 ];
 
 class App extends Component {
