@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
-import reducer from './reducers'
-import history from './history'
+import { HashRouter as Router, Route } from 'react-router-dom';
+import reducer from './reducers';
+import history from './history';
 
 import './App.css';
 import Registration from './components/register';
@@ -31,7 +31,7 @@ import VkCardsList from './components/addCard/vk/CardsList';
 import AddCardFromPhone from './components/addCard/phone';
 import PhoneCardsList from './components/addCard/phone/CardsList';
 import AddCardByRequisites from './components/addCard/requisites';
-import Profile from './components/profile'
+import Profile from './components/profile';
 
 const store = createStore(reducer);
 
@@ -52,18 +52,53 @@ export const routes = [
   { path: '/', component: Registration, name: 'Регистрация' },
   { path: '/home', component: HomePage, name: 'Главная' },
   { path: '/addCard', component: AddCard, name: 'Привязать карту' },
-  { path: '/addCard/social', component: AddCardFromVk, name: 'Карты Вконтакте', back: true },
-  { path: '/addCard/social/list', component: VkCardsList, name: 'Карты Вконтакте', back: true },
-  { path: '/addCard/phone', component: AddCardFromPhone, name: 'По номеру телефона', back: true },
-  { path: '/addCard/phone/list', component: PhoneCardsList, name: 'По номеру телефона', back: true },
-  { path: '/addCard/requisites', component: AddCardByRequisites, name: 'По реквизитам', back: true },
+  {
+    path: '/addCard/social',
+    component: AddCardFromVk,
+    name: 'Карты Вконтакте',
+    back: true,
+  },
+  {
+    path: '/addCard/social/list',
+    component: VkCardsList,
+    name: 'Карты Вконтакте',
+    back: true,
+  },
+  {
+    path: '/addCard/phone',
+    component: AddCardFromPhone,
+    name: 'По номеру телефона',
+    back: true,
+  },
+  {
+    path: '/addCard/phone/list',
+    component: PhoneCardsList,
+    name: 'По номеру телефона',
+    back: true,
+  },
+  {
+    path: '/addCard/requisites',
+    component: AddCardByRequisites,
+    name: 'По реквизитам',
+    back: true,
+  },
   { path: '/payments', component: Payments, name: 'Платежи' },
   { path: '/templates', component: Templates, name: 'Шаблоны', back: true },
-  { path: '/autopayment', component: Autopayment, name: 'Автоплатежи', back: true },
+  {
+    path: '/autopayment',
+    component: Autopayment,
+    name: 'Автоплатежи',
+    back: true,
+  },
   { path: '/QR', component: QR, name: 'QR-код', back: true },
   { path: '/QR/success', component: QRSuccess, name: 'QR-код' },
   { path: '/money', component: Money, name: 'Наличные' },
-  { path: '/partner', component: Partner, name: 'В кассе партнера', back: true },
+  {
+    path: '/partner',
+    component: Partner,
+    name: 'В кассе партнера',
+    back: true,
+  },
   { path: '/bank', component: Bank, name: 'В банке-партнере', back: true },
   { path: '/gosuslugi', component: Gosuslugi, name: 'Платежи', back: true },
   { path: '/feedback', component: Feedback, name: 'Обратная связь' },
@@ -71,8 +106,18 @@ export const routes = [
   { path: '/transfer', component: Transfer, name: 'Переводы' },
   { path: '/own', component: Own, name: 'Между своими счетами', back: true },
   { path: '/client', component: Client, name: 'Клиенту банка', back: true },
-  { path: '/card', component: Card, name: 'На карту другого банка', back: true },
-  { path: '/account', component: Account, name: 'На счет в другом банке', back: true },
+  {
+    path: '/card',
+    component: Card,
+    name: 'На карту другого банка',
+    back: true,
+  },
+  {
+    path: '/account',
+    component: Account,
+    name: 'На счет в другом банке',
+    back: true,
+  },
   { path: '/profile', component: Profile, name: 'Профиль', back: true },
 ];
 
