@@ -1,15 +1,16 @@
 import { connect } from 'react-redux'
 import Component from './Component'
-import { register } from '../../actions/user';
+import { addByNumber } from '../../../../actions/card';
 
 const mapDispatchToProps = dispatch => {
     return {
-        register: user => dispatch(register(user))
+        addCard: card => dispatch(addByNumber(card))
     }
 }
 
 const mapStateToProps = state => {
     return {
+        cards: state.cards.cards
     }
 }
 

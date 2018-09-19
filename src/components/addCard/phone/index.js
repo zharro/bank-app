@@ -22,6 +22,10 @@ class AddCardFromPhone extends React.Component {
     };
   }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   render() {
     const { classes } = this.props;
     const { number } = this.state;
@@ -36,9 +40,10 @@ class AddCardFromPhone extends React.Component {
             className={classes.textField}
             margin="normal"
             value={number}
+            onChange={this.handleChange}
           />
         <Button component={Link} to="/addCard/phone/list"
-          variant="contained" color="primary" className={classes.addButton}>
+          variant="contained" color="primary" className={classes.addButton} disabled={!number}>
           Поиск
         </Button>
       </Form>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { HashRouter as Router, Route } from 'react-router-dom';
-import { routerReducer } from 'react-router-redux';
-
-import * as reducers from './reducers';
+import { Router, Route } from 'react-router-dom';
+import reducer from './reducers'
+import history from './history'
 
 import './App.css';
 import Registration from './components/register';
@@ -32,11 +31,7 @@ import VkCardsList from './components/addCard/vk/CardsList';
 import AddCardFromPhone from './components/addCard/phone';
 import PhoneCardsList from './components/addCard/phone/CardsList';
 import AddCardByRequisites from './components/addCard/requisites';
-
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer,
-});
+import Profile from './components/profile'
 
 const store = createStore(reducer);
 
@@ -57,19 +52,14 @@ export const routes = [
   { path: '/', component: Registration, name: 'Регистрация' },
   { path: '/home', component: HomePage, name: 'Главная' },
   { path: '/addCard', component: AddCard, name: 'Привязать карту' },
-  { path: '/addCard/social', component: AddCardFromVk, name: 'Карты Вконтакте' },
-  { path: '/addCard/social/list', component: VkCardsList, name: 'Карты Вконтакте' },
-  { path: '/addCard/phone', component: AddCardFromPhone, name: 'По номеру телефона' },
-  { path: '/addCard/phone/list', component: PhoneCardsList, name: 'По номеру телефона' },
-  { path: '/addCard/requisites', component: AddCardByRequisites, name: 'По реквизитам' },
+  { path: '/addCard/social', component: AddCardFromVk, name: 'Карты Вконтакте', back: true },
+  { path: '/addCard/social/list', component: VkCardsList, name: 'Карты Вконтакте', back: true },
+  { path: '/addCard/phone', component: AddCardFromPhone, name: 'По номеру телефона', back: true },
+  { path: '/addCard/phone/list', component: PhoneCardsList, name: 'По номеру телефона', back: true },
+  { path: '/addCard/requisites', component: AddCardByRequisites, name: 'По реквизитам', back: true },
   { path: '/payments', component: Payments, name: 'Платежи' },
   { path: '/templates', component: Templates, name: 'Шаблоны', back: true },
-  {
-    path: '/autopayment',
-    component: Autopayment,
-    name: 'Автоплатежи',
-    back: true,
-  },
+  { path: '/autopayment', component: Autopayment, name: 'Автоплатежи', back: true },
   { path: '/QR', component: QR, name: 'QR-код', back: true },
   { path: '/QR/success', component: QRSuccess, name: 'QR-код' },
   { path: '/money', component: Money, name: 'Наличные' },
@@ -83,15 +73,15 @@ export const routes = [
   { path: '/client', component: Client, name: 'Клиенту банка', back: true },
   { path: '/card', component: Card, name: 'На карту другого банка', back: true },
   { path: '/account', component: Account, name: 'На счет в другом банке', back: true },
+  { path: '/profile', component: Profile, name: 'Профиль', back: true },
 ];
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <Router history={history}>
           <div>
-            {/* <Route exact path="/" component={Registration} /> */}
             {routes.map(r => (
               <AppRoute
                 key={r.path}

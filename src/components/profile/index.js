@@ -1,21 +1,20 @@
 import { connect } from 'react-redux'
 import Component from './Component'
-import { addByNumber } from '../../../actions/card';
 
 const mapDispatchToProps = dispatch => {
-  return {
-      addCard: card => dispatch(addByNumber(card))
-  }
+    return {
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-  }
+    return {
+        user: state.user
+    }
 }
 
 const Container = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Component)
 
 export default Container

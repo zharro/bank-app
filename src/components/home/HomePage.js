@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import HomeTopNavigation from './HomeTopNavigation';
-import UserCardsList from './UserCardsList';
+import UserCardsList from './UserCardList';
 
 const styles = theme => ({
   root: {
