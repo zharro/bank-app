@@ -14,19 +14,20 @@ import Button from '@material-ui/core/Button';
 
 const cards = [
     {
-        id: 'Mastercard ****3245',
-        expiresAt: '04/2019',
-        icon: <CardIcon />,
+        name: 'Сбербанк, Visa',
+        shortNumber: '*5232',
+        number: 7534673364213564,
+        expiresAtYear: '2020',
+        expiresAtMonth: '07',
+        money: 500
     },
     {
-        id: 'Visa ****5232',
-        expiresAt: '07/2020',
-        icon: <CardIcon />,
-    },
-    {
-        id: 'Mastercard ****3433',
-        expiresAt: '04/2023',
-        icon: <CardIcon />,
+        name: 'Сбербанк, Mastercard',
+        shortNumber: '*3433',
+        number: 3453532456432169,
+        expiresAtYear: '2019',
+        expiresAtMonth: '04',
+        money: 234
     },
 ];
 
@@ -45,11 +46,11 @@ class VkCardsList extends React.Component {
 
     handleToggle = card => () => {
         const { checked } = this.state;
-        const currentIndex = checked.indexOf(card.id);
+        const currentIndex = checked.indexOf(card.shortNumber);
         const newChecked = [...checked];
 
         if (currentIndex === -1) {
-            newChecked.push(card.id);
+            newChecked.push(card.shortNumber);
         } else {
             newChecked.splice(currentIndex, 1);
         }
@@ -69,18 +70,18 @@ class VkCardsList extends React.Component {
                         <List>
                             {cards.map(card => (
                                 <ListItem
-                                    key={card.id}
+                                    key={card.shortNumber}
                                     role={undefined}
                                     dense
                                     button
                                     onClick={this.handleToggle(card)}
                                     className={classes.listItem}>
                                     <Checkbox
-                                        checked={this.state.checked.indexOf(card.id) !== -1}
+                                        checked={this.state.checked.indexOf(card.shortNumber) !== -1}
                                         tabIndex={-1}
                                         disableRipple
                                     />
-                                    <ListItemText primary={card.id} secondary={card.expiresAt} />
+                                    <ListItemText primary={card.shortNumber} secondary={card.expiresAt} />
                                     <ListItemSecondaryAction>
                                         <IconButton aria-label="Comments">
                                             <CommentIcon />

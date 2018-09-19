@@ -108,8 +108,8 @@ class Registration extends React.Component {
                         value={this.state.sex}
                         onChange={this.handleChange}
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="Женский" />
-                        <FormControlLabel value="male" control={<Radio />} label="Мужской" />
+                        <FormControlLabel value="female" control={<Radio color="primary" />} label="Женский" />
+                        <FormControlLabel value="male" control={<Radio color="primary" />} label="Мужской" />
                     </RadioGroup>
                 </FormControl>
                     <Button onClick={this.onSubmit} variant="contained" color="primary">

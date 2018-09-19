@@ -19,7 +19,7 @@ const styles = theme => ({
 
 const phoneCards = [
     {
-        name: 'Mastercard',
+        name: 'Мегафон Банк, Mastercard',
         shortNumber: '*3245',
         number: 2434243323453245,
         money: 5433,
@@ -27,20 +27,12 @@ const phoneCards = [
         expiresAtMonth: '04'
     },
     {
-        name: 'Visa',
+        name: 'Мегафон Банк, Visa',
         shortNumber: '*5232',
         number: 5124432234535232,
         money: 14770,
         expiresAtYear: '2020',
         expiresAtMonth: '07'
-    },
-    {
-        name: 'Mastercard',
-        shortNumber: '*3433',
-        number: 4214423324563433,
-        money: 422,
-        expiresAtYear: '2022',
-        expiresAtMonth: '01'
     }
 ];
 
@@ -92,6 +84,7 @@ class PhoneCardsList extends React.Component {
                                             tabIndex={-1}
                                             disableRipple
                                             disabled={isDisabled}
+                                            color="primary"
                                         />
                                         <ListItemText primary={card.name} secondary={card.expiresAtMonth + '/' + card.expiresAtYear} />
                                         { isDisabled && 

@@ -13,6 +13,11 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
     },
+    selectField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 100
+    },
     expiresAt: {
         display: 'flex',
         flexDirection: 'row',
@@ -29,7 +34,7 @@ class AddCardByRequisites extends React.Component {
             expireAtYear: '',
             holderName: '',
             cvv: '',
-            name: ''
+            name: 'Газпромбанк, VISA'
         };
     }
 
@@ -51,16 +56,6 @@ class AddCardByRequisites extends React.Component {
         return (
             <Form>
                 <TextField
-                    id="name"
-                    name="name"
-                    label="Название"
-                    type="text"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                />
-                <TextField
                     id="number"
                     name="number"
                     label="Номер"
@@ -76,10 +71,9 @@ class AddCardByRequisites extends React.Component {
                         name="expireAtMonth"
                         select
                         label="Месяц"
-                        className={classes.textField}
+                        className={classes.selectField}
                         value={this.state.expireAtMonth}
                         onChange={this.handleChange}
-                        helperText="Действительна до, месяц"
                         margin="normal"
                     >
                         {months.map(month => (
@@ -93,7 +87,7 @@ class AddCardByRequisites extends React.Component {
                         name="expireAtYear"
                         select
                         label="Год"
-                        className={classes.textField}
+                        className={classes.selectField}
                         value={this.state.expireAtYear}
                         onChange={this.handleChange}
                         SelectProps={{
@@ -101,7 +95,6 @@ class AddCardByRequisites extends React.Component {
                                 className: classes.menu,
                             },
                         }}
-                        helperText="Действительна до, год"
                         margin="normal"
                     >
                         {years.map(year => (

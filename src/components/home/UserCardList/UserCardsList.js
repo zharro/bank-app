@@ -34,7 +34,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     margin: theme.spacing.unit,
-    alignItems:'center'
+    alignItems: 'center'
   },
   paperContent: {
     margin: theme.spacing.unit,
@@ -42,31 +42,46 @@ const styles = theme => ({
 });
 
 class UserCardsList extends Component {
+
+  getBankColor(cardName){
+    if(cardName.startsWith('Мегафон')){
+      return '#00B856';
+    }
+    else if(cardName.startsWith('Газпром')){
+      return '#1553B8';
+    }
+    else if(cardName.startsWith('Сбербанк')){
+      return '#2DCA60';
+    }
+    return '#BDBDBD';
+  }
+
   render() {
     const { classes, cards } = this.props;
+
+
     return (
       <div className={classes.root}>
         {/* <div className={classes.content}> */}
-        { cards.length ? cards.map(c => (
+        {cards.length ? cards.map(c => (
           <List component="nav" key={c.number}>
             <Paper>
               <ListItem className={classes.card} button key={c.number}>
-                <Avatar style={{ backgroundColor: '#3748AC' }}>
+                <Avatar style={{ backgroundColor: this.getBankColor(c.name) }}>
                   <CardIcon />
                 </Avatar>
                 <ListItemText primary={c.name} secondary={c.shortNumber} />
                 <Typography variant="display1">
-                  {c.money + ' p'}
+                  {c.money + ' ₽'}
                 </Typography>
               </ListItem>
             </Paper>
           </List>
-
         ))
           : (
             <Paper className={classes.paper}>
-                <Typography variant="display1" className={classes.paperContent}>
-                  Нет добавленных карт
+              <Typography variant="display1" className={classes.paperContent}>
+                Нет добавленных карт
                 </Typography>
             </Paper>
           )
