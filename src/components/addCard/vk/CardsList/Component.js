@@ -85,7 +85,7 @@ class PhoneCardsList extends React.Component {
                                             disabled={isDisabled}
                                             color="primary"
                                         />
-                                        <ListItemText primary={card.name} secondary={card.expiresAtMonth + '/' + card.expiresAtYear} />
+                                        <ListItemText primary={card.name} secondary={card.shortNumber} />
                                         { isDisabled && 
                                                <Typography>
                                                    Добавлено
