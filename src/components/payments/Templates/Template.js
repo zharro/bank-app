@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-import Form from '../../common/Form'
+import { withRouter } from 'react-router-dom'
 import CardSelect from '../../common/CardSelect'
 import SubmitButton from '../../common/SubmitButton'
-
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  }
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
+  },
 });
 
 class Template extends React.Component {
@@ -28,32 +36,36 @@ class Template extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  onPay = () => {
-    this.setState({showPayStatus: true})
-  }
+  handleSubmit = () => {
+  
+    this.props.history.goBack();
+  };
  
 
   render() {
-    const { classes, name, onSuccess } = this.props
+    const { classes } = this.props
     const { sum } = this.state
     return (
-      <Form headerText={name}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
           <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
        
-          <TextField
+          <FormControl className={classes.formControl}>
+
+            <TextValidator
             id="sum"
             name='sum'
             label="Сумма"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={sum}
             onChange={this.handleChange}
-        />
-        <SubmitButton alertText={'Оплата прошла успешно'} 
-          buttonText={'Оплатить'} 
-          onClose={onSuccess} />
-      </Form>
+            validators={['required']}
+            errorMessages={['Обязательно']}
+        /></FormControl>
+        <SubmitButton 
+          buttonText={'Оплатить'} />
+      </ValidatorForm>
     );
   }
 }
@@ -62,4 +74,4 @@ Template.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Template);
+export default withRouter(withStyles(styles)(Template));

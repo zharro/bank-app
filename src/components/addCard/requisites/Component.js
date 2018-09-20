@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Form from '../../common/Form';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
+import FormControl from '@material-ui/core/FormControl';
 import { months, years } from './constants';
-
+import SubmitButton from '../../common/SubmitButton'
 const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
@@ -23,6 +21,15 @@ const styles = theme => ({
         flexDirection: 'row',
         justifyContent: 'flex-start'
     },
+    form: {
+        overflow: 'auto',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    formControl: {
+        // margin: theme.spacing.unit,
+        minHeight: '70px'
+    },
 });
 
 class AddCardByRequisites extends React.Component {
@@ -34,7 +41,7 @@ class AddCardByRequisites extends React.Component {
             expireAtYear: '',
             holderName: '',
             cvv: '',
-            name: 'Газпромбанк, VISA'
+            name: 'Газпромбанк'
         };
     }
 
@@ -42,10 +49,10 @@ class AddCardByRequisites extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit = () => {
+    handleSubmit = () => {
         this.props.addCard({
             ...this.state,
-            shortNumber: ' *' + this.state.number.slice(-4),
+            shortNumber: 'VISA *' + this.state.number.slice(-4),
             money: Math.floor(Math.random() * 10000)
         })
     }
@@ -54,71 +61,88 @@ class AddCardByRequisites extends React.Component {
         const { classes } = this.props;
 
         return (
-            <Form>
-                <TextField
-                    id="number"
-                    name="number"
-                    label="Номер"
-                    type="number"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.number}
-                    onChange={this.handleChange}
-                />
+            <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+                <FormControl className={classes.formControl}>
+                    <TextValidator
+                        className={classes.formControl}
+                        id="number"
+                        name="number"
+                        label="Номер"
+                        type="number"
+                        margin="dense"
+                        value={this.state.number}
+                        onChange={this.handleChange}
+                        validators={['required', 'matchRegexp:^\\d{16}$']}
+                        errorMessages={['Обязательно', 'Номер недействителен']}
+                    />
+                </FormControl>
+                <FormControl className={classes.formControl}>
+
                 <div className={classes.expiresAt}>
-                    <TextField
-                        id="expireAtMonth"
-                        name="expireAtMonth"
-                        select
-                        label="Месяц"
-                        className={classes.selectField}
-                        value={this.state.expireAtMonth}
-                        onChange={this.handleChange}
-                        margin="normal"
-                    >
-                        {months.map(month => (
-                            <MenuItem key={month} value={month}>
-                                {month}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        id="expireAtYear"
-                        name="expireAtYear"
-                        select
-                        label="Год"
-                        className={classes.selectField}
-                        value={this.state.expireAtYear}
-                        onChange={this.handleChange}
-                        SelectProps={{
-                            MenuProps: {
-                                className: classes.menu,
-                            },
-                        }}
-                        margin="normal"
-                    >
-                        {years.map(year => (
-                            <MenuItem key={year} value={year}>
-                                {year}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                        <SelectValidator
+                            id="expireAtMonth"
+                            name="expireAtMonth"
+                            select
+                            label="Месяц"
+                            className={classes.selectField}
+                            value={this.state.expireAtMonth}
+                            onChange={this.handleChange}
+                            margin="dense"
+                            validators={['required']}
+                            errorMessages={['Обязательно']}
+                        >
+                            {months.map(month => (
+                                <MenuItem key={month} value={month}>
+                                    {month}
+                                </MenuItem>
+                            ))}
+                        </SelectValidator>
+                        <SelectValidator
+                            id="expireAtYear"
+                            name="expireAtYear"
+                            select
+                            label="Год"
+                            className={classes.selectField}
+                            value={this.state.expireAtYear}
+                            onChange={this.handleChange}
+                            SelectProps={{
+                                MenuProps: {
+                                    className: classes.menu,
+                                },
+                            }}
+                            margin="dense"
+                            validators={['required']}
+                            errorMessages={['Обязательно']}
+                        >
+                            {years.map(year => (
+                                <MenuItem key={year} value={year}>
+                                    {year}
+                                </MenuItem>
+                            ))}
+                        </SelectValidator>
+
                 </div>
-                <TextField
-                    id="cvv"
-                    name="cvv"
-                    label="CVV"
-                    type="number"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.cvv}
-                    onChange={this.handleChange}
-                />
-                <Button onClick={this.onSubmit}
-                    variant="contained" color="primary" className={classes.addButton}>
-                    Добавить
-                </Button>
-            </Form>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                    <TextValidator
+                        id="cvv"
+                        name="cvv"
+                        label="CVV"
+                        type="number"
+                        className={classes.textField}
+                        margin="dense"
+                        value={this.state.cvv}
+                        onChange={this.handleChange}
+                        validators={['required', 'matchRegexp:^\\d{3}$']}
+                        errorMessages={['Обязательно', 'CVV недействителен']}
+                    />
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                    <SubmitButton buttonText='Добавить'/>
+                </FormControl>
+
+            </ValidatorForm>
         );
     }
 }

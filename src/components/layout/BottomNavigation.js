@@ -7,7 +7,6 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import MoneyIcon from '@material-ui/icons/Money';
 import HomeIcon from '@material-ui/icons/Home';
-import PaymentsIcon from '@material-ui/icons/ImportExport';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import CreditCardIcon from '@material-ui/icons/CreditCard';

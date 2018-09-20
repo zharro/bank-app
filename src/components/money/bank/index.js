@@ -1,29 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Form from '../../common/Form';
 import SubmitButton from '../../common/SubmitButton';
-import QRCode from 'react-qr-code/lib/components/QRCode';
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
   },
-  formControl: {
-    margin: theme.spacing.unit,
-  },
   selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
+    // marginTop: theme.spacing.unit * 2,
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+  // textField: {
+  //   marginLeft: theme.spacing.unit,
+  //   marginRight: theme.spacing.unit,
+  // },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
   },
   menu: {},
 });
@@ -39,61 +41,60 @@ class SimpleSelect extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleChange2 = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
 
   onPay = () => {
     this.setState({ showPayStatus: true });
   };
-  onPayStatusClose = () => {
-    this.setState({
-      partner: '',
-      sum: '',
-    });
+  handleSubmit = () => {
+    this.props.history.goBack()
   };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <Form headerText="Получить наличные">
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="partnerId">Выберите партнера</InputLabel>
-          <Select
+          <SelectValidator
+            name='partner'
             value={this.state.partner}
             onChange={this.handleChange}
+            className={classes.textField}
+            label='Выберите партнера'
             inputProps={{
               name: 'partner',
               id: 'partner',
             }}
+            validators={['required']}
+            errorMessages={['Обязательно']}
           >
-            <MenuItem value={'euroset'}>ВТБ</MenuItem>
-            <MenuItem value={'wu'}>АльфаБанк</MenuItem>
-            <MenuItem value={'sv'}>Сбербанк</MenuItem>
-          </Select>
-          <TextField
+            <MenuItem value={'alfa'}>Альфа-банк</MenuItem>
+            <MenuItem value={'sber'}>Сбербанк</MenuItem>
+            <MenuItem value={'vtb'}>ВТБ</MenuItem>
+          </SelectValidator>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+          <TextValidator
+            name='sum'
             id="number"
             label="Сумма"
             value={this.state.sum}
-            onChange={this.handleChange2('sum')}
+            onChange={this.handleChange}
             type="number"
             className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
+            // InputLabelProps={{
+            //   shrink: true,
+            // }}
+            margin="dense"
+            validators={['required']}
+            errorMessages={['Обязательно']}
           />
+                  </FormControl>
+
           <SubmitButton
-            alertText={'Поднесите к сканеру'}
             buttonText={'Получить'}
-            component={<QRCode value="hey" size={100} />}
-            onClose={this.onPayStatusClose}
           />
-        </FormControl>
-      </Form>
+        </ValidatorForm>
     );
   }
 }

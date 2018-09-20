@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
-import Form from '../../common/Form'
 import CardSelect from '../../common/CardSelect'
 import SubmitButton from '../../common/SubmitButton'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  }
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
+  },
 });
 
 class Template extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       card: '',
@@ -24,51 +33,59 @@ class Template extends React.Component {
       number: ''
     };
   }
-  
+
   handleChange = event => {
-    this.setState({ 
+    this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
   onPay = () => {
-    this.setState({showPayStatus: true})
+    this.setState({ showPayStatus: true })
   }
- 
-  onSuccess = () => {
+
+  handleSubmit = () => {
     this.props.history.push('/transfer')
   }
   render() {
     const { classes } = this.props
-    const { sum,number } = this.state
+    const { sum, number } = this.state
     return (
-      <Form headerText='На карту другого банка'>
-          <TextField
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+        <FormControl className={classes.formControl}>
+          <TextValidator
             id="number"
             name='number'
             label="Номер карты получателя"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={number}
             onChange={this.handleChange}
-        />
-          <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
 
-          <TextField
+        <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
+        <FormControl className={classes.formControl}>
+
+          <TextValidator
             id="sum"
             name='sum'
             label="Сумма"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={sum}
             onChange={this.handleChange}
-        />
-        <SubmitButton alertText={'Оплата прошла успешно'} 
-          buttonText={'Оплатить'} 
-          onClose={this.onSuccess} />
-      </Form>
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
+
+        <SubmitButton buttonText={'Оплатить'} />
+      </ValidatorForm>
     );
   }
 }

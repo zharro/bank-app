@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import Alert from './Alert';
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -24,40 +22,14 @@ const styles = theme => ({
 });
 
 class SimpleSelect extends React.Component {
-  state = {
-    showAlert: false,
-  };
-
-  onClick = () => {
-    this.setState({ showAlert: true });
-  };
-
-  onClose = () => {
-    this.setState({
-      showAlert: false,
-    });
-    this.props.onClose();
-  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, buttonText } = this.props;
     return (
-      <div className={classes.root}>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={this.onClick}
-        >
-          {this.props.buttonText}
-        </Button>
-        <Alert
-          text={this.props.alertText}
-          open={this.state.showAlert}
-          handleClose={this.onClose}
-          component={this.props.component}
-        />
-      </div>
+      <Button type='submit'
+                        variant="contained" color="primary" className={classes.addButton}>
+                        {buttonText}
+                </Button>
     );
   }
 }

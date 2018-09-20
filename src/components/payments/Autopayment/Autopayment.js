@@ -9,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
 import Form from '../../common/Form'
-import CardSelect from '../../common/CardSelect'
 
 
 const styles = theme => ({
@@ -59,7 +58,17 @@ class Template extends React.Component {
     const { sum } = this.state
     return (
       <Form headerText={name}>
-        <CardSelect disabled onSelect={this.handleChange} cardName={card}/>
+        <TextField
+            disabled
+            id="card"
+            name='card'
+            label="Карта списания"
+            type="text"
+            className={classes.textField}
+            margin="dense"
+            value={card}
+        />
+        
         <FormControl className={classes.formControl}>
          <InputLabel htmlFor="card">Периодичность</InputLabel>
           <Select
@@ -84,7 +93,7 @@ class Template extends React.Component {
             label="Сумма"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={sum}
             onChange={this.handleChange}
         />

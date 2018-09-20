@@ -1,35 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-import Form from '../../common/Form'
 import CardSelect from '../../common/CardSelect'
 import SubmitButton from '../../common/SubmitButton'
-
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  }
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
+  },
 });
 
 class Template extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       fromCard: '',
       toCard: '',
-      sum: props.sum
+      sum: ''
     };
   }
-  
+
   handleToChange = event => {
     let toCard = event.target.value
-    let {fromCard} = this.state
+    let { fromCard } = this.state
     fromCard === toCard && (fromCard = '')
-    this.setState({ 
+    this.setState({
       toCard: event.target.value,
       fromCard: fromCard
     });
@@ -37,43 +44,51 @@ class Template extends React.Component {
 
   handleFromChange = event => {
     let fromCard = event.target.value
-    let {toCard} = this.state
+    let { toCard } = this.state
     fromCard === toCard && (toCard = '')
-    this.setState({ 
+    this.setState({
       fromCard: event.target.value,
       toCard: toCard
     });
   };
 
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
   onPay = () => {
-    this.setState({showPayStatus: true})
+    this.setState({ showPayStatus: true })
   }
- 
-  onSuccess = () => {
+
+  handleSubmit = () => {
     this.props.history.push('/transfer')
   }
   render() {
     const { classes } = this.props
     const { sum } = this.state
     return (
-      <Form headerText='Между своими счетами'>
-          <CardSelect cardName={this.state.fromCard} onSelect={this.handleFromChange} />
-          <CardSelect cardName={this.state.toCard} onSelect={this.handleToChange} />
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+        <CardSelect name='from' cardName={this.state.fromCard} onSelect={this.handleFromChange} />
+        <CardSelect name='to' cardName={this.state.toCard} onSelect={this.handleToChange} />
+        <FormControl className={classes.formControl}>
 
-          <TextField
+          <TextValidator
             id="sum"
             name='sum'
             label="Сумма"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={sum}
             onChange={this.handleChange}
-        />
-        <SubmitButton alertText={'Оплата прошла успешно'} 
-          buttonText={'Оплатить'} 
-          onClose={this.onSuccess} />
-      </Form>
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />        </FormControl>
+
+        <SubmitButton buttonText={'Оплатить'} />
+      </ValidatorForm>
     );
   }
 }

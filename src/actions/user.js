@@ -9,3 +9,11 @@ export function register(user) {
     user,
   };
 }
+
+export const UPDATE_USER = 'UPDATE_USER';
+export function updateUser(update) {
+  return {
+    type: UPDATE_USER,
+    update,
+  };
+}

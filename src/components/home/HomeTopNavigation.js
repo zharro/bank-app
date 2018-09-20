@@ -9,6 +9,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     margin: `0 ${theme.spacing.unit}px`,
   },
   avatar: {
@@ -32,10 +33,13 @@ function HomeTopNavigation(props) {
         className={classes.avatar}
       />
     </Link>
-      
+    <Link to='/settings'>
+
       <Avatar className={classes.settings}>
         <SettingsIcon />
       </Avatar>
+      </Link>
+
     </div>
   );
 }

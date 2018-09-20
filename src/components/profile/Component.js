@@ -20,7 +20,7 @@ const styles = theme => ({
 class PhoneCardsList extends React.Component {
 
     render() {
-        const { classes, user } = this.props;
+        const { user } = this.props;
         return (
             <List component="nav">
                 <ListItem >

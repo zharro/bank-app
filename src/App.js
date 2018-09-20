@@ -32,6 +32,7 @@ import AddCardFromPhone from './components/addCard/phone';
 import PhoneCardsList from './components/addCard/phone/CardsList';
 import AddCardByRequisites from './components/addCard/requisites';
 import Profile from './components/profile';
+import Settings from './components/settings';
 
 const store = createStore(reducer);
 
@@ -119,6 +120,7 @@ export const routes = [
     back: true,
   },
   { path: '/profile', component: Profile, name: 'Профиль', back: true },
+  { path: '/settings', component: Settings, name: 'Настройки', back: true }
 ];
 
 class App extends Component {

@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-import Form from '../../common/Form'
 import CardSelect from '../../common/CardSelect'
 import SubmitButton from '../../common/SubmitButton'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import FormControl from '@material-ui/core/FormControl';
 
 
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  }
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
+  },
+
 });
 
 class Template extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       card: '',
@@ -25,60 +34,84 @@ class Template extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ 
+    this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
   onPay = () => {
-    this.setState({showPayStatus: true})
+    this.setState({ showPayStatus: true })
   }
- 
-  onSuccess = () => {
+
+  handleSubmit = () => {
     this.props.history.push('/transfer')
   }
   render() {
     const { classes } = this.props
     const { sum } = this.state
     return (
-      <Form headerText='В другой банк'>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+        <FormControl className={classes.formControl}>
+
           <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
-        
-          <TextField
-          id="number"
-          label="ИНН"
-          type="number"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="number"
-          label="КПП"
-          type="number"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="number"
-          label="Расчетный счет"
-          type="number"
-          className={classes.textField}
-          margin="normal"
-        />
-          <TextField
+        </FormControl>
+
+        <FormControl className={classes.formControl}>
+
+          <TextValidator
+            id="number"
+            name="inn"
+            label="ИНН"
+            type="number"
+            className={classes.textField}
+            margin="dense"
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <TextValidator
+            id="number"
+            name="kpp"
+            label="КПП"
+            type="number"
+            className={classes.textField}
+            margin="dense"
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <TextValidator
+            id="number"
+            name="account"
+
+            label="Расчетный счет"
+            type="number"
+            className={classes.textField}
+            margin="dense"
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <TextValidator
             id="sum"
             name='sum'
             label="Сумма"
             type="number"
             className={classes.textField}
-            margin="normal"
+            margin="dense"
             value={sum}
             onChange={this.handleChange}
-        />
-        <SubmitButton alertText={'Оплата прошла успешно'} 
-          buttonText={'Оплатить'} 
-          onClose={this.onSuccess} />
-      </Form>
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />
+        </FormControl>
+
+        <SubmitButton
+          buttonText='Оплатить' />
+      </ValidatorForm>
     );
   }
 }

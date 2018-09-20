@@ -4,13 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-
-import Form from '../../common/Form';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import SubmitButton from '../../common/SubmitButton';
 import CardSelect from '../../common/CardSelect';
 import { FormGroup } from '@material-ui/core';
@@ -21,6 +19,11 @@ const styles = theme => ({
     flexDirection: 'column',
     overflow: 'auto',
     flexWrap: 'nowrap'
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
   },
   formControl: {
     // margin: theme.spacing.unit,
@@ -38,6 +41,10 @@ class Gosuslugi extends React.Component {
     checkedA: '',
     checkedB: '',
     card: '',
+    inn: '',
+    kpp: '',
+    account: '',
+    sum: ''
   };
 
   handleChange = event => {
@@ -59,59 +66,86 @@ class Gosuslugi extends React.Component {
       card: '',
     });
   };
+  handleSubmit = () => {
+    this.props.history.goBack();
+  };
+
 
   renderSwitch(param) {
     const { classes } = this.props;
     // const { }
+    const { inn, kpp, account, sum } = this.state
     switch (param) {
       case 'req':
         return (
-          // <div>
-          <FormGroup className={classes.root}>
+          <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+            <CardSelect
+              cardName={this.state.card}
+              onSelect={this.handleChange}
+            />
             <FormControl className={classes.formControl}>
-              <CardSelect
-                cardName={this.state.card}
-                onSelect={this.handleChange}
-              />
-            </FormControl>
-
-            <FormControl className={classes.formControl}>
-
-              <TextField
+              <TextValidator
+                name='inn'
                 id="number"
+                value={inn}
                 label="ИНН"
                 type="number"
                 className={classes.textField}
-              // margin="normal"
+                validators={['required']}
+                errorMessages={['Обязательно']}
+                margin="dense"
+                onChange={this.handleChange}
               />
             </FormControl>
             <FormControl className={classes.formControl}>
-
-              <TextField
+              <TextValidator
+                name='kpp'
+                value={kpp}
                 id="number"
                 label="КПП"
                 type="number"
                 className={classes.textField}
-                margin="normal"
+                margin="dense"
+                validators={['required']}
+                errorMessages={['Обязательно']}
+                onChange={this.handleChange}
               />
             </FormControl>
 
             <FormControl className={classes.formControl}>
-
-              <TextField
+              <TextValidator
+                name='account'
+                value={account}
                 id="number"
                 label="Расчетный счет"
                 type="number"
                 className={classes.textField}
-                margin="normal"
+                margin="dense"
+                validators={['required']}
+                errorMessages={['Обязательно']}
+                onChange={this.handleChange}
+              />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <TextValidator
+                id="sum"
+                name="sum"
+                label="Сумма"
+                type="number"
+                className={classes.textField}
+                margin="dense"
+                value={sum}
+                onChange={this.handleChange}
+                validators={['required']}
+                errorMessages={['Обязательно']}
               />
             </FormControl>
 
             <FormControl className={classes.formControl}>
-
               <FormControlLabel
                 control={
                   <Switch
+                    name='autopaument'
                     checked={this.state.checkedA}
                     onChange={this.handleCheck('checkedA')}
                     value="checkedA"
@@ -123,10 +157,10 @@ class Gosuslugi extends React.Component {
             </FormControl>
 
             <FormControl className={classes.formControl}>
-
               <FormControlLabel
                 control={
                   <Switch
+                    name='template'
                     checked={this.state.checkedB}
                     onChange={this.handleCheck('checkedB')}
                     value="checkedB"
@@ -136,13 +170,10 @@ class Gosuslugi extends React.Component {
                 label="Создать шаблон"
               />
             </FormControl>
-
             <SubmitButton
-              alertText={'Оплата прошла успешно'}
               buttonText={'Оплатить'}
-              onClose={this.onPayStatusClose}
             />
-          </FormGroup>
+          </ValidatorForm>
           // </div>
         );
       case 'qr':
@@ -165,23 +196,21 @@ class Gosuslugi extends React.Component {
     const { classes } = this.props
     return (
       <FormGroup className={classes.root}>
-        <FormControl className={classes.formControl}>
 
-          {payOption ? null : (
-            <InputLabel htmlFor="payOption">Выберите способ оплаты</InputLabel>
-          )}
-          <Select
-            value={this.state.payOption}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'payOption',
-              id: 'payOption',
-            }}
-          >
-            <MenuItem value={'req'}>Оплата по реквизитам</MenuItem>
-            <MenuItem value={'qr'}>Оплата по QR</MenuItem>
-          </Select>
-        </FormControl>
+        {payOption ? null : (
+          <InputLabel htmlFor="payOption">Выберите способ оплаты</InputLabel>
+        )}
+        <Select
+          value={this.state.payOption}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'payOption',
+            id: 'payOption',
+          }}
+        >
+          <MenuItem value={'req'}>Оплата по реквизитам</MenuItem>
+          <MenuItem value={'qr'}>Оплата по QR</MenuItem>
+        </Select>
 
         {this.renderSwitch(payOption)}
       </FormGroup>

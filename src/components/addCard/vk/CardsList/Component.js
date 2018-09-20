@@ -18,19 +18,19 @@ const styles = theme => ({
 
 const phoneCards = [
     {
-        name: 'Мегафон Банк',
-        shortNumber: 'Mastercard, *3245',
-        number: 2434243323453245,
-        money: 5433,
+        name: 'Сбербанк',
+        shortNumber: 'Mastercard, *4445',
+        number: 2434243323454445,
+        money: 1423,
         expiresAtYear: '2019',
         expiresAtMonth: '04'
     },
     {
-        name: 'Мегафон Банк',
-        shortNumber: 'Visa, *5232',
-        number: 5124432234535232,
-        money: 14770,
-        expiresAtYear: '2020',
+        name: 'Сбербанк',
+        shortNumber: 'Visa, *2242',
+        number: 5124432234532242,
+        money: 4255,
+        expiresAtYear: '2021',
         expiresAtMonth: '07'
     }
 ];

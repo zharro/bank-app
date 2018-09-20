@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-import Form from '../../common/Form';
 import CardSelect from '../../common/CardSelect';
 import SubmitButton from '../../common/SubmitButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import QRCode from 'react-qr-code';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import FormControl from '@material-ui/core/FormControl';
 
 function TabContainer(props) {
   return (
@@ -27,6 +25,15 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+  },
+  form: {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formControl: {
+    // margin: theme.spacing.unit,
+    minHeight: '70px'
   },
 });
 
@@ -55,14 +62,14 @@ class Template extends React.Component {
     this.setState({ showPayStatus: true });
   };
 
-  onSuccess = () => {
+  handleSubmit = () => {
     this.props.history.push('/transfer');
   };
   render() {
     const { classes } = this.props;
     const { sum, number, tab } = this.state;
     return (
-      <Form headerText="Клиенту банка">
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
         <Tabs
           name="tab"
           value={tab}
@@ -74,48 +81,60 @@ class Template extends React.Component {
           <Tab label="По карте" />
         </Tabs>
         {tab === 0 && (
-          <TextField
-            id="number"
-            name="number"
-            label="Номер телефона"
-            type="number"
-            className={classes.textField}
-            margin="normal"
-            value={number}
-            onChange={this.handleChange}
-          />
+          <FormControl className={classes.formControl}>
+
+            <TextValidator
+              id="number"
+              name="number"
+              label="Номер телефона"
+              type="number"
+              className={classes.textField}
+              margin="dense"
+              value={number}
+              onChange={this.handleChange}
+              validators={['required','matchRegexp:^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{10,11}$']}
+              errorMessages={['Обязательно','Телефон недействителен']}
+            />        </FormControl>
+
         )}
         {tab === 1 && (
-          <TextField
-            id="number"
-            name="number"
-            label="Номер карты получателя"
-            type="number"
-            className={classes.textField}
-            margin="normal"
-            value={number}
-            onChange={this.handleChange}
-          />
+          <FormControl className={classes.formControl}>
+
+            <TextValidator
+              id="number"
+              name="number"
+              label="Номер карты получателя"
+              type="number"
+              className={classes.textField}
+              margin="dense"
+              value={number}
+              onChange={this.handleChange}
+              validators={['required', 'matchRegexp:^\\d{16}$']}
+                        errorMessages={['Обязательно', 'Номер недействителен']}
+            /> </FormControl>
         )}
 
-        <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
 
-        <TextField
-          id="sum"
-          name="sum"
-          label="Сумма"
-          type="number"
-          className={classes.textField}
-          margin="normal"
-          value={sum}
-          onChange={this.handleChange}
-        />
+        <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
+        <FormControl className={classes.formControl}>
+
+          <TextValidator
+            id="sum"
+            name="sum"
+            label="Сумма"
+            type="number"
+            className={classes.textField}
+            margin="dense"
+            value={sum}
+            onChange={this.handleChange}
+            validators={['required']}
+            errorMessages={['Обязательно']}
+          />        </FormControl>
+
         <SubmitButton
-          alertText={'Оплата прошла успешно'}
           buttonText={'Оплатить'}
-          onClose={this.onSuccess}
         />
-      </Form>
+      </ValidatorForm>
     );
   }
 }

@@ -25,14 +25,7 @@ class Bar extends React.Component {
         <IconButton onClick={this.props.history.goBack}>
             <ArrowBackIcon nativeColor="white" />
         </IconButton>
-    )
-
-    backButton = () => (
-        <IconButton onClick={this.props.history.goBack}>
-            <ArrowBackIcon nativeColor="white" />
-        </IconButton>
-    )
-                            
+    )                            
     
     render() {
         const { renderChat, back } = this.props
@@ -40,7 +33,7 @@ class Bar extends React.Component {
             <AppBar position="static">
             <Toolbar>
                 <Grid container justify='space-between' alignItems='center'>
-                    <Grid item xs={1} >
+                    <Grid item xs={1}>
                         <Grid container alignContent='flex-start'>
                             { back && this.backButton() }
                         </Grid>

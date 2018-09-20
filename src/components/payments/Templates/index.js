@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import UtilitiesIcon from '@material-ui/icons/Domain';
 import InternetIcon from '@material-ui/icons/Wifi';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-
+import { withRouter } from 'react-router-dom'
 import ListItems from './List';
 import Template from './Template';
 
@@ -78,4 +78,4 @@ Templates.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Templates);
+export default withRouter(withStyles(styles)(Templates));

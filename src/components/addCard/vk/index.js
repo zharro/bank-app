@@ -15,9 +15,6 @@ const styles = theme => ({
 });
 
 class AddCardFromVk extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     onUserLoggedIn = user => {
         this.props.history.push('/addCard/social/list');
@@ -28,6 +25,7 @@ class AddCardFromVk extends React.Component {
 
         return (
             <div className={classes.root}>
+                {/* <Redirect to='/addCard/social/list' /> */}
                 <VK apiId={vkAppId}>
                     <Auth options={{
                         onAuth: user => {
