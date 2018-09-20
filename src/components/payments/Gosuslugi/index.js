@@ -44,7 +44,8 @@ class Gosuslugi extends React.Component {
     inn: '',
     kpp: '',
     account: '',
-    sum: ''
+    sum: '',
+    showStatus: false
   };
 
   handleChange = event => {
@@ -56,16 +57,9 @@ class Gosuslugi extends React.Component {
   };
 
   onPay = () => {
-    this.setState({ showPayStatus: true });
+    this.setState({ showStatus: true });
   };
-  onPayStatusClose = () => {
-    this.setState({
-      checkedA: false,
-      checkedB: false,
-      payOption: '',
-      card: '',
-    });
-  };
+
   handleSubmit = () => {
     this.props.history.goBack();
   };
@@ -78,7 +72,7 @@ class Gosuslugi extends React.Component {
     switch (param) {
       case 'req':
         return (
-          <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+          <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
             <CardSelect
               cardName={this.state.card}
               onSelect={this.handleChange}
@@ -171,8 +165,10 @@ class Gosuslugi extends React.Component {
               />
             </FormControl>
             <SubmitButton
-              buttonText={'Оплатить'}
-            />
+              showStatus={this.state.showStatus}
+              buttonText='Оплатить'
+              text='Оплата прошла успешно'
+              onSubmit={this.handleSubmit} />
           </ValidatorForm>
           // </div>
         );

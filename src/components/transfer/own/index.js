@@ -28,7 +28,8 @@ class Template extends React.Component {
     this.state = {
       fromCard: '',
       toCard: '',
-      sum: ''
+      sum: '',
+      showStatus: false
     };
   }
 
@@ -59,7 +60,7 @@ class Template extends React.Component {
   };
 
   onPay = () => {
-    this.setState({ showPayStatus: true })
+    this.setState({ showStatus: true })
   }
 
   handleSubmit = () => {
@@ -69,7 +70,7 @@ class Template extends React.Component {
     const { classes } = this.props
     const { sum } = this.state
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
         <CardSelect name='from' cardName={this.state.fromCard} onSelect={this.handleFromChange} />
         <CardSelect name='to' cardName={this.state.toCard} onSelect={this.handleToChange} />
         <FormControl className={classes.formControl}>
@@ -87,7 +88,11 @@ class Template extends React.Component {
             errorMessages={['Обязательно']}
           />        </FormControl>
 
-        <SubmitButton buttonText={'Оплатить'} />
+        <SubmitButton
+              showStatus={this.state.showStatus}
+              buttonText='Перевести'
+              text='Перевод прошел успешно'
+              onSubmit={this.handleSubmit} />
       </ValidatorForm>
     );
   }

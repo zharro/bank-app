@@ -9,10 +9,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
+
   form: {
     overflow: 'auto',
     display: 'flex',
@@ -29,8 +26,9 @@ class Template extends React.Component {
     super(props)
     this.state = {
       card: '',
-      sum: props.sum,
-      number: ''
+      sum: '',
+      number: '',
+      showStatus: false
     };
   }
 
@@ -41,7 +39,7 @@ class Template extends React.Component {
   };
 
   onPay = () => {
-    this.setState({ showPayStatus: true })
+    this.setState({ showStatus: true })
   }
 
   handleSubmit = () => {
@@ -51,7 +49,7 @@ class Template extends React.Component {
     const { classes } = this.props
     const { sum, number } = this.state
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
         <FormControl className={classes.formControl}>
           <TextValidator
             id="number"
@@ -62,8 +60,8 @@ class Template extends React.Component {
             margin="dense"
             value={number}
             onChange={this.handleChange}
-            validators={['required']}
-            errorMessages={['Обязательно']}
+            validators={['required', 'matchRegexp:^\\d{16}$']}
+            errorMessages={['Обязательно', 'Номер недействителен']}
           />
         </FormControl>
 
@@ -84,7 +82,11 @@ class Template extends React.Component {
           />
         </FormControl>
 
-        <SubmitButton buttonText={'Оплатить'} />
+        <SubmitButton
+          showStatus={this.state.showStatus}
+          buttonText='Перевести'
+          text='Перевод прошел успешно'
+          onSubmit={this.handleSubmit} />
       </ValidatorForm>
     );
   }

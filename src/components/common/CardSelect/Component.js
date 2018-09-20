@@ -7,7 +7,7 @@ import { SelectValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
     formControl: {
-      margin: theme.spacing.unit,
+    //   margin: theme.spacing.unit,
       minHeight: '70px'
     },
     select: {

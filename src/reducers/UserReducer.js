@@ -3,11 +3,11 @@ import { REGISTER, UPDATE_USER } from '../actions/user'
 export default function user(
   state = {
     //for development
-    name: 'Артем',
-    lastName: 'Дзюба',
-    middleName: 'Иванович',
-    phone: '89111392332',
-    email: 'dz',
+    // name: 'Артем',
+    // lastName: 'Дзюба',
+    // middleName: 'Иванович',
+    // phone: '89111392332',
+    // email: 'dz',
 
     //опции по умолчанию
       sms: true,

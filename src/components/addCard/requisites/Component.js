@@ -36,32 +36,45 @@ class AddCardByRequisites extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: '',
-            expireAtMonth: '',
-            expireAtYear: '',
-            holderName: '',
-            cvv: '',
-            name: 'Газпромбанк'
+            card: {
+                number: '',
+                expireAtMonth: '',
+                expireAtYear: '',
+                holderName: '',
+                cvv: '',
+                name: 'Газпромбанк'
+            },
+            showAlert: false
         };
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({
+            card: {
+                ...this.state.card,
+                [e.target.name]: e.target.value
+            }
+        })
     }
 
     handleSubmit = () => {
         this.props.addCard({
-            ...this.state,
-            shortNumber: 'VISA *' + this.state.number.slice(-4),
+            ...this.state.card,
+            shortNumber: 'VISA *' + this.state.card.number.slice(-4),
             money: Math.floor(Math.random() * 10000)
         })
     }
 
+    handleShowAlert = () => {
+        this.setState({ showAlert: true })
+    }
+
     render() {
         const { classes } = this.props;
-
+        const { number, expireAtMonth,expireAtYear,cvv } = this.state.card
+        const { showAlert } = this.state
         return (
-            <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+            <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleShowAlert}>
                 <FormControl className={classes.formControl}>
                     <TextValidator
                         className={classes.formControl}
@@ -70,7 +83,7 @@ class AddCardByRequisites extends React.Component {
                         label="Номер"
                         type="number"
                         margin="dense"
-                        value={this.state.number}
+                        value={number}
                         onChange={this.handleChange}
                         validators={['required', 'matchRegexp:^\\d{16}$']}
                         errorMessages={['Обязательно', 'Номер недействителен']}
@@ -78,14 +91,14 @@ class AddCardByRequisites extends React.Component {
                 </FormControl>
                 <FormControl className={classes.formControl}>
 
-                <div className={classes.expiresAt}>
+                    <div className={classes.expiresAt}>
                         <SelectValidator
                             id="expireAtMonth"
                             name="expireAtMonth"
                             select
                             label="Месяц"
                             className={classes.selectField}
-                            value={this.state.expireAtMonth}
+                            value={expireAtMonth}
                             onChange={this.handleChange}
                             margin="dense"
                             validators={['required']}
@@ -103,7 +116,7 @@ class AddCardByRequisites extends React.Component {
                             select
                             label="Год"
                             className={classes.selectField}
-                            value={this.state.expireAtYear}
+                            value={expireAtYear}
                             onChange={this.handleChange}
                             SelectProps={{
                                 MenuProps: {
@@ -121,7 +134,7 @@ class AddCardByRequisites extends React.Component {
                             ))}
                         </SelectValidator>
 
-                </div>
+                    </div>
                 </FormControl>
 
                 <FormControl className={classes.formControl}>
@@ -132,14 +145,14 @@ class AddCardByRequisites extends React.Component {
                         type="number"
                         className={classes.textField}
                         margin="dense"
-                        value={this.state.cvv}
+                        value={cvv}
                         onChange={this.handleChange}
                         validators={['required', 'matchRegexp:^\\d{3}$']}
                         errorMessages={['Обязательно', 'CVV недействителен']}
                     />
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                    <SubmitButton buttonText='Добавить'/>
+                    <SubmitButton showStatus={showAlert} buttonText='Добавить' text='Карта успешно добавлена' onSubmit={this.handleSubmit} />
                 </FormControl>
 
             </ValidatorForm>

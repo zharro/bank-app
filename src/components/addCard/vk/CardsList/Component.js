@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import Alert from '../../../common/Alert'
 
 const styles = theme => ({
     root: {
@@ -38,6 +39,7 @@ const phoneCards = [
 class PhoneCardsList extends React.Component {
     state = {
         checked: '',
+        showStatus: false
     };
 
     handleToggle = number => () => {
@@ -60,6 +62,10 @@ class PhoneCardsList extends React.Component {
         let card = phoneCards.find(c => c.number === this.state.checked)
         this.props.addCard(card)
     }
+
+    handleSubmit = () => {
+        this.setState({ showStatus: true })
+      }
 
     render() {
         const { classes, cards } = this.props;
@@ -97,9 +103,11 @@ class PhoneCardsList extends React.Component {
                             )
                             }
                         </List>
-                        <Button disabled={!this.state.checked} onClick={this.addCard} color="primary" variant="contained">
+                        <Button disabled={!this.state.checked} onClick={this.handleSubmit} color="primary" variant="contained">
                             Привязать
                         </Button>
+                        <Alert text={'Карта успешно добавлена'} open={this.state.showStatus} onClose={this.addCard} />
+
                     </Grid>
                 </Grid>
             </Grid>

@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import Alert from '../../../common/Alert'
 
 const styles = theme => ({
     root: {
@@ -38,19 +39,10 @@ const phoneCards = [
 class PhoneCardsList extends React.Component {
     state = {
         checked: '',
+        open: false
     };
 
     handleToggle = number => () => {
-        // const { checked } = this.state;
-        // const currentIndex = checked.indexOf(card.number);
-        // const newChecked = [...checked];
-
-        // if (currentIndex === -1) {
-        //     newChecked.push(card.number);
-        // } else {
-        //     newChecked.splice(currentIndex, 1);
-        // }
-
         this.setState({
             checked: this.state.checked === number ? '' : number,
         });
@@ -60,6 +52,10 @@ class PhoneCardsList extends React.Component {
         let card = phoneCards.find(c => c.number === this.state.checked)
         this.props.addCard(card)
     }
+
+    handleSubmit = () => {
+        this.setState({ open: true })
+      }
 
     render() {
         const { classes, cards } = this.props;
@@ -97,18 +93,15 @@ class PhoneCardsList extends React.Component {
                             )
                             }
                         </List>
-                        <Button disabled={!this.state.checked} onClick={this.addCard} color="primary" variant="contained">
+                        <Button disabled={!this.state.checked} onClick={this.handleSubmit} color="primary" variant="contained">
                             Привязать
                         </Button>
+                        <Alert text={'Карта успешно добавлена'} open={this.state.open} onClose={this.addCard} />
                     </Grid>
                 </Grid>
             </Grid>
         );
     }
 }
-
-// VkCardsList.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
 
 export default withStyles(styles)(PhoneCardsList);

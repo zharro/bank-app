@@ -43,7 +43,6 @@ class Autopayments extends Component {
   render() {
     const { selected } = this.state
     const { cards } = this.props
-    console.log(cards[0].shortNumber)
     const autopayments = cards.length ? [
       {
         name: 'Детский сад',

@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import SubmitButton from '../../common/SubmitButton';
 import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
+import QRCode from 'react-qr-code/lib/components/QRCode';
 
 const styles = theme => ({
   root: {
@@ -34,7 +35,7 @@ class SimpleSelect extends React.Component {
   state = {
     partner: '',
     sum: '',
-    showPayStatus: 'false',
+    showStatus: false,
   };
 
   handleChange = event => {
@@ -43,8 +44,9 @@ class SimpleSelect extends React.Component {
 
 
   onPay = () => {
-    this.setState({ showPayStatus: true });
+    this.setState({ showStatus: true });
   };
+
   handleSubmit = () => {
     this.props.history.goBack()
   };
@@ -53,7 +55,7 @@ class SimpleSelect extends React.Component {
     const { classes } = this.props;
 
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
         <FormControl className={classes.formControl}>
           <SelectValidator
             name='partner'
@@ -91,9 +93,14 @@ class SimpleSelect extends React.Component {
           />
                   </FormControl>
 
-          <SubmitButton
-            buttonText={'Получить'}
-          />
+         <SubmitButton 
+         showStatus={this.state.showStatus} 
+         buttonText='Получить' 
+         text='Поднесите к сканеру' 
+         onSubmit={this.handleSubmit}
+         component={<QRCode value="hey" size={100} />}
+         />
+
         </ValidatorForm>
     );
   }

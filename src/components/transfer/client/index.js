@@ -22,10 +22,10 @@ TabContainer.propTypes = {
 };
 
 const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
+  // textField: {
+  //   marginLeft: theme.spacing.unit,
+  //   marginRight: theme.spacing.unit,
+  // },
   form: {
     overflow: 'auto',
     display: 'flex',
@@ -45,6 +45,7 @@ class Template extends React.Component {
       sum: props.sum,
       number: '',
       tab: 0,
+      showStatus: false
     };
   }
 
@@ -59,7 +60,7 @@ class Template extends React.Component {
   };
 
   onPay = () => {
-    this.setState({ showPayStatus: true });
+    this.setState({ showStatus: true });
   };
 
   handleSubmit = () => {
@@ -69,7 +70,7 @@ class Template extends React.Component {
     const { classes } = this.props;
     const { sum, number, tab } = this.state;
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
         <Tabs
           name="tab"
           value={tab}
@@ -132,8 +133,11 @@ class Template extends React.Component {
           />        </FormControl>
 
         <SubmitButton
-          buttonText={'Оплатить'}
-        />
+              showStatus={this.state.showStatus}
+              buttonText='Перевести'
+              text='Перевод прошел успешно'
+              onSubmit={this.handleSubmit} />
+
       </ValidatorForm>
     );
   }

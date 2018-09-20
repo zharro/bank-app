@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import { withRouter
+    // , Redirect 
+} from 'react-router-dom';
 import VK, { Auth } from 'react-vk';
 
 const vkAppId = 6695119;
@@ -25,7 +27,8 @@ class AddCardFromVk extends React.Component {
 
         return (
             <div className={classes.root}>
-                {/* <Redirect to='/addCard/social/list' /> */}
+                {/* bypass VK API
+                <Redirect to='/addCard/social/list' /> */}
                 <VK apiId={vkAppId}>
                     <Auth options={{
                         onAuth: user => {

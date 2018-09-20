@@ -28,7 +28,9 @@ class Template extends React.Component {
     super(props)
     this.state = {
       card: '',
-      sum: props.sum
+      sum: props.sum,
+      showStatus: false
+
     };
   }
   
@@ -41,12 +43,15 @@ class Template extends React.Component {
     this.props.history.goBack();
   };
  
+  onPay = () => {
+    this.setState({ showStatus: true });
+  };
 
   render() {
     const { classes } = this.props
     const { sum } = this.state
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
           <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
        
           <FormControl className={classes.formControl}>
@@ -63,8 +68,11 @@ class Template extends React.Component {
             validators={['required']}
             errorMessages={['Обязательно']}
         /></FormControl>
-        <SubmitButton 
-          buttonText={'Оплатить'} />
+        <SubmitButton
+              showStatus={this.state.showStatus}
+              buttonText='Оплатить'
+              text='Оплата прошла успешно'
+              onSubmit={this.handleSubmit} />
       </ValidatorForm>
     );
   }

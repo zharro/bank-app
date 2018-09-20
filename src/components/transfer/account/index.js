@@ -29,7 +29,11 @@ class Template extends React.Component {
     super(props)
     this.state = {
       card: '',
-      sum: props.sum
+      inn: '',
+      kpp: '',
+      account: '',
+      sum: '',
+      showStatus: false
     };
   }
 
@@ -40,7 +44,7 @@ class Template extends React.Component {
   };
 
   onPay = () => {
-    this.setState({ showPayStatus: true })
+    this.setState({ showStatus: true })
   }
 
   handleSubmit = () => {
@@ -48,9 +52,9 @@ class Template extends React.Component {
   }
   render() {
     const { classes } = this.props
-    const { sum } = this.state
+    const { sum, inn,kpp,account } = this.state
     return (
-      <ValidatorForm className={classes.form} ref='form' onSubmit={this.handleSubmit}>
+      <ValidatorForm className={classes.form} ref='form' onSubmit={this.onPay}>
         <FormControl className={classes.formControl}>
 
           <CardSelect cardName={this.state.card} onSelect={this.handleChange} />
@@ -61,18 +65,22 @@ class Template extends React.Component {
           <TextValidator
             id="number"
             name="inn"
+            value={inn}
             label="ИНН"
             type="number"
             className={classes.textField}
             margin="dense"
             validators={['required']}
             errorMessages={['Обязательно']}
+            onChange={this.handleChange}
           />
         </FormControl>
         <FormControl className={classes.formControl}>
           <TextValidator
             id="number"
             name="kpp"
+            value={kpp}
+            onChange={this.handleChange}
             label="КПП"
             type="number"
             className={classes.textField}
@@ -85,7 +93,8 @@ class Template extends React.Component {
           <TextValidator
             id="number"
             name="account"
-
+            onChange={this.handleChange}
+            value={account}
             label="Расчетный счет"
             type="number"
             className={classes.textField}
@@ -99,18 +108,21 @@ class Template extends React.Component {
             id="sum"
             name='sum'
             label="Сумма"
+            onChange={this.handleChange}
+            value={sum}
             type="number"
             className={classes.textField}
             margin="dense"
-            value={sum}
-            onChange={this.handleChange}
             validators={['required']}
             errorMessages={['Обязательно']}
           />
         </FormControl>
 
         <SubmitButton
-          buttonText='Оплатить' />
+              showStatus={this.state.showStatus}
+              buttonText='Перевести'
+              text='Перевод прошел успешно'
+              onSubmit={this.handleSubmit} />
       </ValidatorForm>
     );
   }

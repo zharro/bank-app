@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Alert from './Alert'
 
 const styles = theme => ({
   root: {
@@ -22,14 +23,29 @@ const styles = theme => ({
 });
 
 class SimpleSelect extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false
+    }
+  }
+
+  handleSubmit = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.props.onClick()
+  }
 
   render() {
-    const { classes, buttonText } = this.props;
+    const { classes, buttonText, text, showStatus, onSubmit, component } = this.props;
     return (
-      <Button type='submit'
-                        variant="contained" color="primary" className={classes.addButton}>
-                        {buttonText}
-                </Button>
+        <Button type='submit'
+          variant="contained" color="primary" className={classes.addButton}>
+          {buttonText}
+          <Alert text={text} open={showStatus} onClose={onSubmit} component={component}/>
+        </Button>
     );
   }
 }
